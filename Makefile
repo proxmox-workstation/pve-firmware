@@ -39,3 +39,13 @@ ${FW_DEB} fw: control.firmware linux-firmware.git/WHENCE dvb-firmware.git/README
 	install -d fwdata/DEBIAN
 	sed -e 's/@VERSION@/${FW_VER}-${FW_REL}/' <control.firmware >fwdata/DEBIAN/control
 	dpkg-deb --build fwdata ${FW_DEB}
+
+# upgrade to current master
+.PHONY: update_modules
+update_modules: submodules
+	git submodule foreach 'git pull --ff-only origin master'
+
+# make sure submodules were initialized
+.PHONY: submodules
+submodules dvb-firmware.git/README linux-firmware.git/WHENCE:
+	test -f "linux-firmware.git/WHENCE" || git submodule update --init

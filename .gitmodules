@@ -1,0 +1,6 @@
+[submodule "linux-firmware.git"]
+	path = linux-firmware.git
+	url = ../mirror_linux-firmware
+[submodule "dvb-firmware.git"]
+	path = dvb-firmware.git
+	url = ../mirror_dvb-firmware
