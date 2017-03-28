@@ -49,3 +49,7 @@ update_modules: submodules
 .PHONY: submodules
 submodules dvb-firmware.git/README linux-firmware.git/WHENCE:
 	test -f "linux-firmware.git/WHENCE" || git submodule update --init
+
+.PHONY: clean
+clean:
+	rm -rf fwdata *.deb *.buildinfo *.dsc *.changes
