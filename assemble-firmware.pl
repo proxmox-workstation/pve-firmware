@@ -266,7 +266,6 @@ liquidio/lio_23xx.bin
 rtlwifi/rtl8723bu_bt.bin
 ath10k/QCA9887/hw1.0/board-2.bin
 mrvl/usbusb8997_combo_v4.bin
-iwlwifi-6000g2b-IWL6000G2B_UCODE_API_MAX.ucode
 iwlwifi-6000-6.ucode
 iwlwifi-7265D-26.ucode
 iwlwifi-3168-26.ucode
