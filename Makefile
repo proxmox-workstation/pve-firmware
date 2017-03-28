@@ -50,6 +50,10 @@ update_modules: submodules
 submodules dvb-firmware.git/README linux-firmware.git/WHENCE:
 	test -f "linux-firmware.git/WHENCE" || git submodule update --init
 
+.PHONY: upload
+upload: ${DEBS}
+	tar cf - ${DEBS} | ssh repoman@repo.proxmox.com -- upload --product pve --dist stretch
+
 .PHONY: clean
 clean:
 	rm -rf fwdata *.deb *.buildinfo *.dsc *.changes
