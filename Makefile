@@ -4,6 +4,8 @@ FW_DEB=pve-firmware_${FW_VER}-${FW_REL}_all.deb
 
 GITVERSION:=$(shell cat .git/refs/heads/master)
 
+export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp -lchangelog.firmware)
+
 DEBS=${FW_DEB}
 
 ${FW_DEB} fw: control.firmware linux-firmware.git/WHENCE dvb-firmware.git/README changelog.firmware fwlist-2.6.18-2-pve fwlist-2.6.24-12-pve fwlist-2.6.32-3-pve fwlist-2.6.32-4-pve fwlist-2.6.32-6-pve fwlist-2.6.32-13-pve fwlist-2.6.32-14-pve fwlist-2.6.32-20-pve fwlist-2.6.32-21-pve fwlist-3.10.0-3-pve fwlist-3.10.0-7-pve fwlist-3.10.0-8-pve fwlist-3.19.8-1-pve fwlist-4.2.8-1-pve fwlist-4.4.13-2-pve fwlist-4.4.16-1-pve fwlist-4.4.21-1-pve fwlist-4.4.44-1-pve fwlist-4.10.5-1-pve
