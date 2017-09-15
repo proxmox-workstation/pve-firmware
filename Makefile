@@ -1,5 +1,5 @@
 FW_VER=2.0
-FW_REL=2
+FW_REL=3~test1
 FW_DEB=pve-firmware_${FW_VER}-${FW_REL}_all.deb
 
 GITVERSION:=$(shell git rev-parse HEAD)
