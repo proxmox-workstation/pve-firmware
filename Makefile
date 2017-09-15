@@ -8,6 +8,9 @@ export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
 
 DEBS=${FW_DEB}
 
+.PHONY: deb
+deb: ${DEBS}
+
 ${FW_DEB}: fwdata
 	cp -a debian fwdata
 	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout ${GITVERSION}" >fwdata/debian/SOURCE
