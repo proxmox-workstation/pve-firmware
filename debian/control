@@ -6,9 +6,39 @@ Homepage: http://www.proxmox.com
 
 Package: pve-firmware
 Architecture: all
-Suggests: linux-image
-Conflicts: firmware-linux-free, firmware-linux-nonfree, firmware-atheros, firmware-bnx2, firmware-bnx2x, firmware-intelwimax, firmware-ipw2x00, firmware-iwlwifi, firmware-netxen, firmware-qlogic, firmware-ralink, firmware-realtek, firmware-libertas, firmware-myricom, firmware-brcm80211, firmware-ivtv
-Replaces: firmware-linux-free, firmware-linux-nonfree, firmware-atheros, firmware-bnx2, firmware-bnx2x, firmware-intelwimax, firmware-ipw2x00, firmware-iwlwifi, firmware-netxen, firmware-qlogic, firmware-ralink, firmware-realtek, firmware-libertas, firmware-myricom, firmware-brcm80211, firmware-ivtv
+Suggests: linux-image,
+Conflicts: firmware-atheros,
+           firmware-bnx2,
+           firmware-bnx2x,
+           firmware-brcm80211,
+           firmware-intelwimax,
+           firmware-ipw2x00,
+           firmware-ivtv,
+           firmware-iwlwifi,
+           firmware-libertas,
+           firmware-linux-free,
+           firmware-linux-nonfree,
+           firmware-myricom,
+           firmware-netxen,
+           firmware-qlogic,
+           firmware-ralink,
+           firmware-realtek,
+Replaces: firmware-atheros,
+          firmware-bnx2,
+          firmware-bnx2x,
+          firmware-brcm80211,
+          firmware-intelwimax,
+          firmware-ipw2x00,
+          firmware-ivtv,
+          firmware-iwlwifi,
+          firmware-libertas,
+          firmware-linux-free,
+          firmware-linux-nonfree,
+          firmware-myricom,
+          firmware-netxen,
+          firmware-qlogic,
+          firmware-ralink,
+          firmware-realtek,
 Description: Binary firmware code for the pve-kernel
  This package contains the binary firmware for various modules used in
  the pve-kernel.
