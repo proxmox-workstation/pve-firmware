@@ -325,6 +325,14 @@ amdgpu/raven_sdma.bin
 amdgpu/raven_vcn.bin
 amdgpu/raven_vcn.bin
 
+iwlwifi-9260-th-a0-jf-a0-34.ucode
+iwlwifi-9000-pu-a0-jf-b0-34.ucode
+iwlwifi-9000-pu-a0-jf-a0-34.ucode
+iwlwifi-QuQnj-a0-hr-a0-34.ucode
+iwlwifi-QuQnj-a0-jf-b0-34.ucode
+iwlwifi-QuQnj-f0-hr-a0-34.ucode
+iwlwifi-Qu-a0-jf-b0-34.ucode
+iwlwifi-Qu-a0-hr-a0-34.ucode
 )) {
     $skip->{$fw} = 1;
 }
