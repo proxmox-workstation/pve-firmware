@@ -41,7 +41,7 @@ submodule dvb-firmware.git/README linux-firmware.git/WHENCE:
 
 .PHONY: upload
 upload: ${DEBS}
-	tar cf - ${DEBS} | ssh repoman@repo.proxmox.com -- upload --product pve --dist stretch
+	tar cf - ${DEBS} | ssh repoman@repo.proxmox.com -- upload --product pve,pmg --dist stretch
 
 .PHONY: clean
 clean:
