@@ -31,12 +31,12 @@ fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-4.4-and-older-p
 
 # upgrade to current master
 .PHONY: update_modules
-update_modules: submodules
+update_modules: submodule
 	git submodule foreach 'git pull --ff-only origin master'
 
 # make sure submodules were initialized
-.PHONY: submodules
-submodules dvb-firmware.git/README linux-firmware.git/WHENCE:
+.PHONY: submodule
+submodule dvb-firmware.git/README linux-firmware.git/WHENCE:
 	test -f "linux-firmware.git/WHENCE" || git submodule update --init
 
 .PHONY: upload
