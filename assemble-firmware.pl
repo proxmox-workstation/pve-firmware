@@ -342,6 +342,8 @@ sub copy_fw {
 
 my $fwdone = {};
 
+my $error = 0;
+
 open(TMP, $fwlist);
 while(defined(my $line = <TMP>)) {
     chomp $line;
@@ -400,7 +402,9 @@ while(defined(my $line = <TMP>)) {
     if ($fw =~ m|/|) {
 	next if $skip->{$fw};
 
-        die "unable to find firmware: $fw $mod\n";
+	warn "unable to find firmware: $fw $mod\n";
+	$error++;
+	next;
     }
 
     my $name = basename($fw);
@@ -432,8 +436,10 @@ while(defined(my $line = <TMP>)) {
     next if $skip->{$fw};
     next if $fw =~ m|^dvb-|;
 
-    die "unable to find firmware: $fw $mod\n";
+    warn "unable to find firmware: $fw $mod\n";
+    $error++;
+    next;
 }
 close(TMP);
 
-exit(0);
+exit($error);
