@@ -1,0 +1,12 @@
+this repository contains the needed lists and scripts to build firmware packages for PVE.
+
+the fwlist files are generated using 'find-firmware.pl' as part of the kernel
+build. the script 'assemble-firmware.pl' is used to read those lists and copy
+the files from various source directory into a target directory.
+
+firmeware for some wireless HW gets excluded when there is a separate debian
+package for that, for example:
+
+zd1211-firmware
+atmel-firmware
+bluez-firmware
