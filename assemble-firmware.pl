@@ -420,7 +420,7 @@ while(defined(my $line = <TMP>)) {
     my $sr = `find '$fwsrc1' -type f -name '$name'`;
     chomp $sr;
     if ($sr) {
-	#print "found $fw in $sr\n";
+	print "found $fw in $sr\n";
 	copy_fw($sr, $fwdest);
 	next;
     }
@@ -436,7 +436,7 @@ while(defined(my $line = <TMP>)) {
     $sr = `find '$fwsrc3' -type f -name '$name'`;
     chomp $sr;
     if ($sr) {
-	#print "found $fw in $sr\n";
+	print "found $fw in $sr\n";
 	copy_fw($sr, $fwdest);
 	next;
     }
