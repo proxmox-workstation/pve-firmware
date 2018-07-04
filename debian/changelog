@@ -1,3 +1,11 @@
+pve-firmware (2.0-5) unstable; urgency=medium
+
+  * update linux-firmware
+
+  * updates for latest 4.15.18 kernel
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 04 Jul 2018 16:00:58 +0200
+
 pve-firmware (2.0-4) unstable; urgency=medium
 
   * updates for latest 4.15.3 kernel
