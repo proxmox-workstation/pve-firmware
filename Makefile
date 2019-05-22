@@ -1,6 +1,6 @@
-FW_VER=2.0
-FW_REL=6
-FW_DEB=pve-firmware_${FW_VER}-${FW_REL}_all.deb
+include /usr/share/dpkg/pkg-info.mk
+
+FW_DEB=pve-firmware_${DEB_VERSION_UPSTREAM}_all.deb
 
 GITVERSION:=$(shell git rev-parse HEAD)
 
