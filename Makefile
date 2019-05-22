@@ -16,16 +16,12 @@ ${FW_DEB}: fwdata
 	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout ${GITVERSION}" >fwdata/debian/SOURCE
 	cd fwdata; dpkg-buildpackage -b -us -uc
 
-fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-4.4-and-older-pve fwlist-4.10.5-1-pve fwlist-4.13.1-1-pve
+fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-*-pve
 	rm -rf fwdata
 	mkdir -p fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-4.15.18-8-pve fwdata/lib/firmware
+	./assemble-firmware.pl fwlist-5.0.8-1-pve fwdata/lib/firmware
 	# include any files from older/newer kernels here
-	./assemble-firmware.pl fwlist-4.15.18-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-4.15.3-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-4.13.1-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-4.4-and-older-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-4.10.5-1-pve fwdata/lib/firmware
+	./assemble-firmware.pl fwlist-4.15-and-older fwdata/lib/firmware
 	install -d fwdata/usr/share/doc/pve-firmware
 	cp linux-firmware.git/WHENCE fwdata/usr/share/doc/pve-firmware/README
 	install -d fwdata/usr/share/doc/pve-firmware/licenses
