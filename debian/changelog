@@ -1,3 +1,11 @@
+pve-firmware (3.0-2) pve pmg; urgency=medium
+
+  * update linux-firmware
+
+  * add fwlist-5.0.15-1-pve
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 03 Jul 2019 11:29:30 +0200
+
 pve-firmware (3.0-1) pve pmg; urgency=medium
 
   * update for Debian Buster with latest 5.0.8-1-pve Disco based Kernel
