@@ -117,6 +117,9 @@ ct2fw.bin
 ctfw-3.0.3.1.bin
 ctfw.bin
 cxgb4/t4fw-1.3.10.0.bin
+cxgb4/t4fw.bin
+cxgb4/t5fw.bin
+cxgb4/t6fw.bin
 cyzfirm.bin
 daqboard2000_firmware.bin
 fw.ram.bin
@@ -204,6 +207,8 @@ libertas/cf8305.bin
 libertas/gspi8385.bin
 libertas/gspi8385_helper.bin
 libertas/gspi8385_hlp.bin
+libertas/sd8688.bin
+libertas/sd8688_helper.bin
 libertas/usb8388.bin
 libertas_cs.fw
 libertas_cs_helper.fw
@@ -227,6 +232,15 @@ mt7628_e1.bin
 mt7628_e2.bin
 mwl8k/fmimage_8363.fw
 mwl8k/helper_8363.fw
+netronome/nic_AMDA0081-0001_1x40.nffw
+netronome/nic_AMDA0081-0001_4x10.nffw
+netronome/nic_AMDA0096-0001_2x10.nffw
+netronome/nic_AMDA0097-0001_2x40.nffw
+netronome/nic_AMDA0097-0001_4x10_1x40.nffw
+netronome/nic_AMDA0097-0001_8x10.nffw
+netronome/nic_AMDA0099-0001_1x10_1x25.nffw
+netronome/nic_AMDA0099-0001_2x10.nffw
+netronome/nic_AMDA0099-0001_2x25.nffw
 ni6534a.bin
 niscrb01.bin
 niscrb02.bin
@@ -239,6 +253,8 @@ phanfw-4.0.579.bin
 prism2_ru.fw
 prism_ap_fw.bin
 prism_sta_fw.bin
+rt3070.bin
+rt3090.bin
 rtl_bt/rtl8723b_config.bin
 rtl_bt/rtl8723bs_config.bin
 rtl_bt/rtl8723ds_config.bin
@@ -263,6 +279,7 @@ solos-db-FPGA.bin
 symbol_sp24t_prim_fw
 symbol_sp24t_sec_fw
 tehuti/firmware.bin
+ti-connectivity/wl1271-nvs.bin
 ti-connectivity/wl18xx-conf.bin
 tms380tr.bin
 usb8388.bin
