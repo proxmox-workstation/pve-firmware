@@ -1,4 +1,12 @@
-pve-firmware (3.0-4) UNRELEASED; urgency=medium
+pve-firmware (3.0-5) pve pmg; urgency=medium
+
+  * update linux-firmware to 20200122 tag
+
+  * add fwlist-5.3.18-1-pve
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 05 Feb 2020 14:34:29 +0100
+
+pve-firmware (3.0-4) pve pmg; urgency=medium
 
   * update linux-firmware
 
