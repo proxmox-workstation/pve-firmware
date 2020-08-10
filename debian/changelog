@@ -1,3 +1,11 @@
+pve-firmware (3.1-2) pve pmg pbs; urgency=medium
+
+  * add fwlist-5.4.55-1-pve
+
+  * update linux-firmware to 20200721
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 10 Aug 2020 14:03:19 +0200
+
 pve-firmware (3.1-1) pve pmg; urgency=medium
 
   * update linux-firmware to 20200421
