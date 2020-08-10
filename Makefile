@@ -19,8 +19,9 @@ ${FW_DEB}: fwdata
 fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-*-pve
 	rm -rf fwdata
 	mkdir -p fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.30-1-pve fwdata/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.55-1-pve fwdata/lib/firmware
 	# include any files from older/newer kernels here
+	./assemble-firmware.pl fwlist-5.4.30-1-pve fwdata/lib/firmware
 	./assemble-firmware.pl fwlist-5.4.27-1-pve fwdata/lib/firmware
 	./assemble-firmware.pl fwlist-5.4.22-1-pve fwdata/lib/firmware
 	./assemble-firmware.pl fwlist-5.3-and-older fwdata/lib/firmware
