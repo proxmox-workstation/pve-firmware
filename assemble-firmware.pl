@@ -6,7 +6,6 @@ use warnings;
 use File::Basename;
 use File::Path;
 
-my $fwsrc0 = "linux-2.6-3.10.0/firmware";
 my $fwsrc1 = "linux-firmware.git";
 my $fwsrc2 = "dvb-firmware.git";
 my $fwsrc3 = "firmware-misc";
@@ -392,12 +391,6 @@ while(defined(my $line = <TMP>)) {
 	$fw = 'cis/PE520.cis';
     }
  
-    # the rtl_nic/rtl8168d-1.fw file is buggy in current kernel tree
-    if (-f "$fwsrc0/$fw" && 
-	($fw ne 'rtl_nic/rtl8168d-1.fw')) { 
-	copy_fw("$fwsrc0/$fw", $fwdest);
-	next;
-    }
     if (-f "$fwsrc1/$fw") {
 	copy_fw("$fwsrc1/$fw", $fwdest);
 	next;
