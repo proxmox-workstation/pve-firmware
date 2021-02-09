@@ -297,7 +297,7 @@ sub copy_fw {
     return if -f $dest;
 
     mkpath dirname($dest);
-    system ("cp '$src' '$dest'") == 0 || die "copy $src to $dest failed";
+    system ("cp '$src' '$dest'") == 0 or die "copy '$src' to '$dest' failed!\n";
 }
 
 my $fwdone = {};
