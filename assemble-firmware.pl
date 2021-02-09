@@ -6,7 +6,6 @@ use warnings;
 use File::Basename;
 use File::Path;
 
-my $fwsrc1 = "linux-firmware.git";
 my $fwsrc2 = "dvb-firmware.git";
 my $fwsrc3 = "firmware-misc";
 
@@ -380,8 +379,7 @@ while(defined(my $line = <TMP>)) {
 	$fw = 'cis/PE520.cis';
     }
  
-    if (-f "$fwsrc1/$fw") {
-	copy_fw("$fwsrc1/$fw", $fwdest);
+    if (-e "$target/$fw") {
 	next;
     }
     if (-f "$fwsrc3/$fw") {
@@ -399,12 +397,17 @@ while(defined(my $line = <TMP>)) {
 
     my $name = basename($fw);
 
-    my $sr = `find '$fwsrc1' -type f -name '$name'`;
+    my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
     chomp $sr;
     if ($sr) {
-	print "found $fw in $sr\n";
-	copy_fw($sr, $fwdest);
-	next;
+	my $found = 0;
+	for my $f (split("\n", $sr)) {
+	    if ($f =~ /$fw$/) {
+		print "found $fw in $f\n";
+		$found = 1;
+	    }
+	}
+	next if $found;
     }
 
     $sr = `find '$fwsrc2' -type f -name '$name'`;
