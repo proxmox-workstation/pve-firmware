@@ -22,12 +22,7 @@ fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-*-pve
 	cd linux-firmware.git; ./copy-firmware.sh -v ../fwdata.tmp/lib/firmware/
 	./assemble-firmware.pl fwlist-5.4.86-1-pve fwdata.tmp/lib/firmware
 	# include any files from older/newer kernels here
-	./assemble-firmware.pl fwlist-5.4.60-1-pve fwdata.tmp/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.55-1-pve fwdata.tmp/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.30-1-pve fwdata.tmp/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.27-1-pve fwdata.tmp/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.22-1-pve fwdata.tmp/lib/firmware
-	./assemble-firmware.pl fwlist-5.3-and-older fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4-and-older fwdata.tmp/lib/firmware
 	install -d fwdata.tmp/usr/share/doc/pve-firmware
 	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
 	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses
