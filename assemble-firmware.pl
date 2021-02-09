@@ -351,10 +351,11 @@ while(defined(my $line = <TMP>)) {
 	next;
     }
 
+    my $module = basename($mod);
     if ($fw =~ m|/|) {
 	next if $skip->{$fw};
 
-	warn "unable to find firmware: $fw $mod\n";
+	warn "ERROR: unable to find firmware ($module): $fw\n";
 	$error++;
 	next;
     }
@@ -393,7 +394,7 @@ while(defined(my $line = <TMP>)) {
     next if $skip->{$fw};
     next if $fw =~ m|^dvb-|;
 
-    warn "unable to find firmware: $fw $mod\n";
+    warn "ERROR: unable to find firmware ($module): $fw\n";
     $error++;
     next;
 }
