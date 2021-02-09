@@ -16,15 +16,6 @@ die "no firmware list specified" if !$fwlist || ! -f $fwlist;
 my $target = shift;
 die "no target directory" if !$target || ! -d $target;
 
-my $force_skip = {
-
-    # not needed, the HBA has burned-in firmware
-    'ql2600_fw.bin' => 1,
-    'ql2700_fw.bin' => 1,
-    'ql8100_fw.bin' => 1,
-    'ql8300_fw.bin' => 1,
-};
-
 my $skip = {};
 # debian squeeze also misses those files
 foreach my $fw (qw(
@@ -373,8 +364,6 @@ while(defined(my $line = <TMP>)) {
     next if $fw =~ m|^xc3028-v27\.fw|; # found twice!
     next if $fw =~ m|.inp|; # where are those files?
     next if $fw =~ m|^ueagle-atm/|; # where are those files?
-
-    next if $force_skip->{$fw};
 
     next if $fwdone->{$fw};
     $fwdone->{$fw} = 1;
