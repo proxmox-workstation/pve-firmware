@@ -35,20 +35,6 @@ amdgpu/arcturus_smc.bin
 amdgpu/arcturus_sos.bin
 amdgpu/arcturus_vcn.bin
 amdgpu/navi10_mes.bin
-amdgpu/navi12_asd.bin
-amdgpu/navi12_ce.bin
-amdgpu/navi12_gpu_info.bin
-amdgpu/navi12_me.bin
-amdgpu/navi12_mec.bin
-amdgpu/navi12_mec2.bin
-amdgpu/navi12_pfp.bin
-amdgpu/navi12_rlc.bin
-amdgpu/navi12_sdma.bin
-amdgpu/navi12_sdma1.bin
-amdgpu/navi12_smc.bin
-amdgpu/navi12_sos.bin
-amdgpu/navi12_vcn.bin
-amdgpu/vega20_ta.bin
 ar9170.fw
 ast_dp501_fw.bin
 ath10k/QCA6174/hw2.1/firmware-4.bin
@@ -90,7 +76,6 @@ b43legacy/ucode4.fw
 bfubase.frm
 brcm/brcmfmac-sdio.bin
 brcm/brcmfmac-sdio.txt
-brcm/brcmfmac43012-sdio.bin
 brcm/brcmfmac43143-sdio.txt
 brcm/brcmfmac43241b0-sdio.txt
 brcm/brcmfmac43241b4-sdio.txt
@@ -130,9 +115,6 @@ ct2fw.bin
 ctfw-3.0.3.1.bin
 ctfw.bin
 cxgb4/t4fw-1.3.10.0.bin
-cxgb4/t4fw.bin
-cxgb4/t5fw.bin
-cxgb4/t6fw.bin
 cyzfirm.bin
 daqboard2000_firmware.bin
 fw.ram.bin
@@ -140,7 +122,6 @@ i1480-phy-0.0.bin
 i1480-pre-phy-0.0.bin
 i1480-usb-0.0.bin
 i2400m-fw-sdio-1.3.sbcf
-intel/ice/ddp/ice.pkg
 isi4608.bin
 isi4616.bin
 isi608.bin
@@ -192,8 +173,6 @@ iwlwifi-Qu-a0-jf-b0-48.ucode
 iwlwifi-Qu-a0-jf-b0-50.ucode
 iwlwifi-Qu-b0-hr-b0-43.ucode
 iwlwifi-Qu-b0-jf-b0-43.ucode
-iwlwifi-Qu-b0-jf-b0-50.ucode
-iwlwifi-Qu-c0-hr-b0-50.ucode
 iwlwifi-QuQnj-a0-hr-a0-34.ucode
 iwlwifi-QuQnj-a0-hr-a0-43.ucode
 iwlwifi-QuQnj-a0-hr-a0-48.ucode
@@ -209,9 +188,6 @@ iwlwifi-QuQnj-f0-hr-a0-34.ucode
 iwlwifi-QuQnj-f0-hr-a0-43.ucode
 iwlwifi-QuQnj-f0-hr-a0-48.ucode
 iwlwifi-QuQnj-f0-hr-a0-50.ucode
-iwlwifi-QuZ-a0-hr-b0-50.ucode
-iwlwifi-QuZ-a0-jf-b0-50.ucode
-iwlwifi-cc-a0-50.ucode
 iwlwifi-so-a0-gf-a0-48.ucode
 iwlwifi-so-a0-gf-a0-50.ucode
 iwlwifi-so-a0-hr-b0-48.ucode
@@ -236,8 +212,6 @@ libertas/cf8305.bin
 libertas/gspi8385.bin
 libertas/gspi8385_helper.bin
 libertas/gspi8385_hlp.bin
-libertas/sd8688.bin
-libertas/sd8688_helper.bin
 libertas/usb8388.bin
 libertas_cs.fw
 libertas_cs_helper.fw
@@ -247,7 +221,6 @@ liquidio/lio_23xx.bin
 liquidio/lio_410nv.bin
 me2600_firmware.bin
 me4000_firmware.bin
-mediatek/mt7663pr2h.bin
 mrvl/pcie8766_uapsta.bin
 mrvl/pcie8997_uapsta.bin
 mrvl/sd8786_uapsta.bin
@@ -261,17 +234,6 @@ mt7628_e1.bin
 mt7628_e2.bin
 mwl8k/fmimage_8363.fw
 mwl8k/helper_8363.fw
-netronome/nic_AMDA0058-0011_2x40.nffw
-netronome/nic_AMDA0058-0012_2x40.nffw
-netronome/nic_AMDA0081-0001_1x40.nffw
-netronome/nic_AMDA0081-0001_4x10.nffw
-netronome/nic_AMDA0096-0001_2x10.nffw
-netronome/nic_AMDA0097-0001_2x40.nffw
-netronome/nic_AMDA0097-0001_4x10_1x40.nffw
-netronome/nic_AMDA0097-0001_8x10.nffw
-netronome/nic_AMDA0099-0001_1x10_1x25.nffw
-netronome/nic_AMDA0099-0001_2x10.nffw
-netronome/nic_AMDA0099-0001_2x25.nffw
 ni6534a.bin
 niscrb01.bin
 niscrb02.bin
@@ -284,8 +246,10 @@ phanfw-4.0.579.bin
 prism2_ru.fw
 prism_ap_fw.bin
 prism_sta_fw.bin
-rt3070.bin
-rt3090.bin
+ql2600_fw.bin
+ql2700_fw.bin
+ql8100_fw.bin
+ql8300_fw.bin
 rtl_bt/rtl8723b_config.bin
 rtl_bt/rtl8723bs_config.bin
 rtl_bt/rtl8723ds_config.bin
@@ -310,7 +274,6 @@ solos-db-FPGA.bin
 symbol_sp24t_prim_fw
 symbol_sp24t_sec_fw
 tehuti/firmware.bin
-ti-connectivity/wl1271-nvs.bin
 ti-connectivity/wl18xx-conf.bin
 tms380tr.bin
 usb8388.bin
@@ -380,6 +343,7 @@ while(defined(my $line = <TMP>)) {
     }
  
     if (-e "$target/$fw") {
+	warn "WARN: allowed to skip existing '$fw'\n" if $skip->{$fw};
 	next;
     }
     if (-f "$fwsrc3/$fw") {
