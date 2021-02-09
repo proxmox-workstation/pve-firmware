@@ -17,20 +17,21 @@ ${FW_DEB}: fwdata
 	cd fwdata; dpkg-buildpackage -b -us -uc
 
 fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-*-pve
-	rm -rf fwdata
-	mkdir -p fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.86-1-pve fwdata/lib/firmware
+	rm -rf fwdata fwdata.tmp
+	mkdir -p fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.86-1-pve fwdata.tmp/lib/firmware
 	# include any files from older/newer kernels here
-	./assemble-firmware.pl fwlist-5.4.60-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.55-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.30-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.27-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.4.22-1-pve fwdata/lib/firmware
-	./assemble-firmware.pl fwlist-5.3-and-older fwdata/lib/firmware
-	install -d fwdata/usr/share/doc/pve-firmware
-	cp linux-firmware.git/WHENCE fwdata/usr/share/doc/pve-firmware/README
-	install -d fwdata/usr/share/doc/pve-firmware/licenses
-	cp linux-firmware.git/LICEN[CS]E* fwdata/usr/share/doc/pve-firmware/licenses
+	./assemble-firmware.pl fwlist-5.4.60-1-pve fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.55-1-pve fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.30-1-pve fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.27-1-pve fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.4.22-1-pve fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fwlist-5.3-and-older fwdata.tmp/lib/firmware
+	install -d fwdata.tmp/usr/share/doc/pve-firmware
+	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
+	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses
+	cp linux-firmware.git/LICEN[CS]E* fwdata.tmp/usr/share/doc/pve-firmware/licenses
+	mv fwdata.tmp fwdata
 
 # upgrade to current master
 .PHONY: update_modules
