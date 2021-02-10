@@ -1,0 +1,6 @@
+*.deb
+*.buildinfo
+*.changes
+/fw.list
+/fwdata
+/fwdata.tmp
