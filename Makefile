@@ -18,6 +18,7 @@ ${FW_DEB}: fwdata
 
 .PHONY: fw.list
 fw.list: fwlist-5.4.86-1-pve fwlist-5.4-and-older
+fw.list: fwlist-5.10.6-1-pve
 	sort -u $^ > $@
 
 fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
