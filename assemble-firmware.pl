@@ -304,8 +304,8 @@ my $fwdone = {};
 
 my $error = 0;
 
-open(TMP, $fwlist);
-while(defined(my $line = <TMP>)) {
+open(my $fd, '<', $fwlist);
+while(defined(my $line = <$fd>)) {
     chomp $line;
     my ($fw, $mod) = split(/\s+/, $line, 2);
 
@@ -398,6 +398,6 @@ while(defined(my $line = <TMP>)) {
     $error++;
     next;
 }
-close(TMP);
+close($fd);
 
 exit($error);
