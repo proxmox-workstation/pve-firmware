@@ -16,13 +16,15 @@ ${FW_DEB}: fwdata
 	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout ${GITVERSION}" >fwdata/debian/SOURCE
 	cd fwdata; dpkg-buildpackage -b -us -uc
 
-fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fwlist-*-pve
+.PHONY: fw.list
+fw.list: fwlist-5.4.86-1-pve fwlist-5.4-and-older
+	sort -u $^ > $@
+
+fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf fwdata fwdata.tmp
 	mkdir -p fwdata.tmp/lib/firmware
 	cd linux-firmware.git; ./copy-firmware.sh -v ../fwdata.tmp/lib/firmware/
-	./assemble-firmware.pl fwlist-5.4.86-1-pve fwdata.tmp/lib/firmware
-	# include any files from older/newer kernels here
-	./assemble-firmware.pl fwlist-5.4-and-older fwdata.tmp/lib/firmware
+	./assemble-firmware.pl fw.list fwdata.tmp/lib/firmware
 	install -d fwdata.tmp/usr/share/doc/pve-firmware
 	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
 	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses
@@ -45,4 +47,4 @@ upload: ${DEBS}
 
 .PHONY: clean
 clean:
-	rm -rf fwdata *.deb *.buildinfo *.dsc *.changes
+	rm -rf fwdata fw.list *.deb *.buildinfo *.dsc *.changes
