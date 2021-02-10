@@ -25,6 +25,7 @@ fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	mkdir -p fwdata.tmp/lib/firmware
 	cd linux-firmware.git; ./copy-firmware.sh -v ../fwdata.tmp/lib/firmware/
 	./assemble-firmware.pl fw.list fwdata.tmp/lib/firmware
+	find fwdata.tmp/lib/firmware -empty -type d -delete
 	install -d fwdata.tmp/usr/share/doc/pve-firmware
 	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
 	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses

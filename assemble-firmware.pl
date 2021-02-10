@@ -301,6 +301,7 @@ sub copy_fw {
 }
 
 my $fwdone = {};
+my $fwbase_name = {};
 
 my $error = 0;
 
@@ -308,6 +309,9 @@ open(my $fd, '<', $fwlist);
 while(defined(my $line = <$fd>)) {
     chomp $line;
     my ($fw, $mod) = split(/\s+/, $line, 2);
+
+    my $fw_name = basename($fw);
+    $fwbase_name->{$fw_name} = 1;
 
     next if $mod =~ m|^kernel/sound|;
     next if $mod =~ m|^kernel/drivers/isdn|;
@@ -400,4 +404,41 @@ while(defined(my $line = <$fd>)) {
 }
 close($fd);
 
-exit($error);
+exit($error) if $error;
+
+my $target_fw_string = `find '$target' -type f -o -type l`;
+chomp $target_fw_string;
+exit(-1) if !$target_fw_string;
+
+my $all_fw_files = [ split("\n", $target_fw_string) ];
+
+my ($keep, $delete) = (0, 0);
+
+my $link_target = {};
+for my $f (@$all_fw_files) {
+    next if ! -l $f;
+    my $link = basename($f);
+    my $file = readlink($f);
+    my $target = basename($file);
+    $link_target->{$target} = 1 if $fwbase_name->{$link};
+    $link_target->{$file} = 1 if $fwbase_name->{$link};
+}
+
+for my $f (@$all_fw_files) {
+    my $name = basename($f);
+
+    if ($fwbase_name->{$name}) {
+	$keep++;
+    } elsif ($link_target->{$name}) {
+	#print "skip link target '$f'\n";
+	$keep++;
+    } else {
+	print "delete unreferenced $f\n";
+	unlink $f or warn "ERROR deleting '$f' - $!\n";
+	$delete++;
+    }
+}
+
+print "cleanup end result: keep: $keep, delete: $delete\n";
+
+exit(0);
