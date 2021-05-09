@@ -1,3 +1,9 @@
+pve-firmware (3.2-3) pve pmg pbs; urgency=medium
+
+  * update linux-firmware to current master (> 20210315)
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 09 May 2021 17:53:25 +0200
+
 pve-firmware (3.2-2) pve pmg pbs; urgency=medium
 
   * track our conflict with the firmware-netronome package, as that FW is
