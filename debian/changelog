@@ -1,3 +1,9 @@
+pve-firmware (3.2-4) stable; urgency=medium
+
+  * update linux-firmware to current master (> 20210511)
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 30 May 2021 17:10:12 +0200
+
 pve-firmware (3.2-3) pve pmg pbs; urgency=medium
 
   * update linux-firmware to current master (> 20210315)
