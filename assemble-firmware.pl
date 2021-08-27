@@ -25,6 +25,7 @@ FW13
 RTL8192U/boot.img
 RTL8192U/data.img
 RTL8192U/main.img
+amd/amd_sev_fam19h_model0xh.sbin
 amdgpu/arcturus_asd.bin
 amdgpu/arcturus_gpu_info.bin
 amdgpu/arcturus_mec.bin
