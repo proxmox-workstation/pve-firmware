@@ -21,6 +21,7 @@ fw.list: fwlist-5.4.86-1-pve fwlist-5.4-and-older
 fw.list: fwlist-5.11.0-1-pve
 fw.list: fwlist-5.11.21-1-pve
 fw.list: fwlist-5.11.22-4-pve
+fw.list: fwlist-5.13.14-1-pve
 	sort -u $^ > $@
 
 fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
