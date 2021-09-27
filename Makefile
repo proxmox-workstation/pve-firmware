@@ -17,7 +17,7 @@ ${FW_DEB}: fwdata
 	cd fwdata; dpkg-buildpackage -b -us -uc
 
 .PHONY: fw.list
-fw.list: fwlist-5.4.86-1-pve fwlist-5.4-and-older
+fw.list: fwlist-5.4.86-1-pve
 fw.list: fwlist-5.11.0-1-pve
 fw.list: fwlist-5.11.21-1-pve
 fw.list: fwlist-5.11.22-4-pve
