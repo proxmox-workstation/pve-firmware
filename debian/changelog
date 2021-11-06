@@ -1,3 +1,14 @@
+pve-firmware (3.3-3) stable; urgency=medium
+
+  * update linux-firmware to current master, including 20211027
+
+  * add fwlist-5.13.19-1-pve FW list
+
+  * drop old (pre 5.4.86) FW lists to avoid shipping obsolete firmware blobs
+    and to reduces package size
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 06 Nov 2021 15:13:56 +0100
+
 pve-firmware (3.3-2) stable; urgency=medium
 
   * update linux-firmware to 20210919
