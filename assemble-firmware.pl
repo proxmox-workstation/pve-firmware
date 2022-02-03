@@ -25,7 +25,6 @@ FW13
 RTL8192U/boot.img
 RTL8192U/data.img
 RTL8192U/main.img
-amd/amd_sev_fam19h_model0xh.sbin
 amdgpu/aldebaran_mec.bin
 amdgpu/aldebaran_mec2.bin
 amdgpu/aldebaran_rlc.bin
@@ -194,10 +193,7 @@ iwlwifi-Qu-a0-jf-b0-43.ucode
 iwlwifi-Qu-a0-jf-b0-48.ucode
 iwlwifi-Qu-a0-jf-b0-50.ucode
 iwlwifi-Qu-b0-hr-b0-43.ucode
-iwlwifi-Qu-b0-hr-b0-66.ucode
 iwlwifi-Qu-b0-jf-b0-43.ucode
-iwlwifi-Qu-b0-jf-b0-66.ucode
-iwlwifi-Qu-c0-hr-b0-66.ucode
 iwlwifi-QuQnj-a0-hr-a0-34.ucode
 iwlwifi-QuQnj-a0-hr-a0-43.ucode
 iwlwifi-QuQnj-a0-hr-a0-48.ucode
@@ -219,8 +215,6 @@ iwlwifi-QuQnj-f0-hr-a0-34.ucode
 iwlwifi-QuQnj-f0-hr-a0-43.ucode
 iwlwifi-QuQnj-f0-hr-a0-48.ucode
 iwlwifi-QuQnj-f0-hr-a0-50.ucode
-iwlwifi-QuZ-a0-hr-b0-66.ucode
-iwlwifi-QuZ-a0-jf-b0-66.ucode
 iwlwifi-SoSnj-a0-gf-a0-59.ucode
 iwlwifi-SoSnj-a0-gf-a0-63.ucode
 iwlwifi-SoSnj-a0-gf-a0-66.ucode
@@ -243,7 +237,6 @@ iwlwifi-bz-a0-hr-b0-63.ucode
 iwlwifi-bz-a0-hr-b0-66.ucode
 iwlwifi-bz-a0-mr-a0-63.ucode
 iwlwifi-bz-a0-mr-a0-66.ucode
-iwlwifi-cc-a0-66.ucode
 iwlwifi-ma-a0-fm-a0-66.ucode
 iwlwifi-ma-a0-gf-a0-59.ucode
 iwlwifi-ma-a0-gf-a0-63.ucode
@@ -335,7 +328,6 @@ wlwifi-SoSnj-a0-mr-a0-59.ucode
 rtl_bt/rtl8723ds_config.bin
 rtl_bt/rtl8723ds_fw.bin
 rtl_bt/rtl8761a_config.bin
-rtl_bt/rtl8821a_config.bin
 rtlwifi/rtl8723bu_bt.bin
 rtlwifi/rtl8723efw.bin
 s5k4ecgx.bin
