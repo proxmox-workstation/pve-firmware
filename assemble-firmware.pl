@@ -444,7 +444,7 @@ while(defined(my $line = <$fd>)) {
 	my $found = 0;
 	for my $f (split("\n", $sr)) {
 	    if ($f =~ /$fw$/) {
-		print "found $fw in $f\n";
+		print "found linked $fw in $f\n";
 		$found = 1;
 	    }
 	}
