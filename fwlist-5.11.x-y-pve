@@ -593,6 +593,7 @@ brcm/brcmfmac4350-pcie.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfm
 brcm/brcmfmac4354-sdio.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
 brcm/brcmfmac43569.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
 brcm/brcmfmac4356-pcie.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
+brcm/brcmfmac4356-pcie.gpd-win-pocket.txt kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
 brcm/brcmfmac4356-sdio.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
 brcm/brcmfmac43570-pcie.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
 brcm/brcmfmac4358-pcie.bin kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko

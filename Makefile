@@ -16,11 +16,11 @@ ${FW_DEB}: fwdata
 	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout ${GITVERSION}" >fwdata/debian/SOURCE
 	cd fwdata; dpkg-buildpackage -b -us -uc
 
+# NOTE: when collapsing FW lists keep major.minor still separated, so we can sunset the older ones
+# without user impact safely. The last oldstable list needs to be kept avoid breakage on upgrade
 .PHONY: fw.list
 fw.list: fwlist-5.4.86-1-pve
-fw.list: fwlist-5.11.0-1-pve
-fw.list: fwlist-5.11.21-1-pve
-fw.list: fwlist-5.11.22-4-pve
+fw.list: fwlist-5.11.x-y-pve
 fw.list: fwlist-5.13.14-1-pve
 fw.list: fwlist-5.13.19-1-pve
 fw.list: fwlist-5.13.19-4-pve
