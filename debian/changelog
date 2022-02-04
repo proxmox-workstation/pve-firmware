@@ -1,3 +1,14 @@
+pve-firmware (3.3-5) stable; urgency=medium
+
+  * update linux-firmware to current master (> 20211216)
+
+  * add fwlist-5.13.19-4-pve and fwlist-5.15.19-1-pve
+
+  * switch dvb-firmware upstream to libreELEC and update to current master
+    (1.4.2)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 04 Feb 2022 06:27:26 +0100
+
 pve-firmware (3.3-4) stable; urgency=medium
 
   * add fwlist of 5.15.5
