@@ -25,14 +25,6 @@ FW13
 RTL8192U/boot.img
 RTL8192U/data.img
 RTL8192U/main.img
-amdgpu/aldebaran_mec.bin
-amdgpu/aldebaran_mec2.bin
-amdgpu/aldebaran_rlc.bin
-amdgpu/aldebaran_sdma.bin
-amdgpu/aldebaran_smc.bin
-amdgpu/aldebaran_sos.bin
-amdgpu/aldebaran_ta.bin
-amdgpu/aldebaran_vcn.bin
 amdgpu/cyan_skillfish_ce.bin
 amdgpu/cyan_skillfish_me.bin
 amdgpu/cyan_skillfish_mec.bin
