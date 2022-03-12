@@ -21,9 +21,7 @@ ${FW_DEB}: fwdata
 .PHONY: fw.list
 fw.list: fwlist-5.4.86-1-pve
 fw.list: fwlist-5.11.x-y-pve
-fw.list: fwlist-5.13.14-1-pve
-fw.list: fwlist-5.13.19-1-pve
-fw.list: fwlist-5.13.19-4-pve
+fw.list: fwlist-5.13.x-y-pve
 fw.list: fwlist-5.15.5-1-pve
 fw.list: fwlist-5.15.19-1-pve
 fw.list: fwlist-5.15.27-1-pve
