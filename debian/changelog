@@ -1,3 +1,11 @@
+pve-firmware (3.4-2) stable; urgency=medium
+
+  * update linux-firmware to current master
+
+  * add fwlist-5.13.19-4-pve and fwlist-5.15.35-1-pve
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 04 May 2022 13:49:04 +0200
+
 pve-firmware (3.4-1) stable; urgency=medium
 
   * update linux-firmware to current master (> 20220411 tag)
