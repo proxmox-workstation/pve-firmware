@@ -422,6 +422,26 @@ while(defined(my $line = <$fd>)) {
     }
 
     my $module = basename($mod);
+    my $name = basename($fw);
+
+    if ($name =~ /\*/) {
+	my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
+	chomp $sr;
+	if ($sr) {
+	    for my $f (split("\n", $sr)) {
+		print "found $f for GLOB '$name'\n";
+		my $f_name = basename($f);
+		$fwbase_name->{$f_name} = 1;
+	    }
+	    warn "WARN: allowed to skip existing '$fw'\n" if $skip->{$fw};
+	    next;
+	} else {
+	    next if $skip->{$fw};
+	    warn "ERROR: unable to find FW for GLOB ($module): $fw\n";
+	    $error++;
+	}
+    }
+
     if ($fw =~ m|/|) {
 	next if $skip->{$fw};
 
@@ -429,8 +449,6 @@ while(defined(my $line = <$fd>)) {
 	$error++;
 	next;
     }
-
-    my $name = basename($fw);
 
     my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
     chomp $sr;
