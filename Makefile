@@ -25,6 +25,7 @@ fw.list: fwlist-5.13.x-y-pve
 fw.list: fwlist-5.15.5-1-pve
 fw.list: fwlist-5.15.19-1-pve
 fw.list: fwlist-5.15.27-1-pve
+fw.list: fwlist-5.15.35-1-pve
 	rm -f $@.tmp $@
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@
