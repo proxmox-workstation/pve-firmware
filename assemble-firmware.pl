@@ -56,6 +56,7 @@ ath6k/AR6004/hw1.1/bdata.bin
 ath6k/AR6004/hw1.1/fw.ram.bin
 ath6k/AR6004/hw1.2/fw.ram.bin
 ath6k/AR6004/hw1.3/fw.ram.bin
+atmsar11.fw
 b43/ucode11.fw
 b43/ucode13.fw
 b43/ucode14.fw
@@ -136,6 +137,8 @@ i1480-phy-0.0.bin
 i1480-pre-phy-0.0.bin
 i1480-usb-0.0.bin
 i2400m-fw-sdio-1.3.sbcf
+i2400m-fw-usb-1.5.sbcf
+i6050-fw-usb-1.5.sbcf
 idt82p33xxx.bin
 isi4608.bin
 isi4616.bin
@@ -318,7 +321,6 @@ ql8300_fw.bin
 renesas_usb_fw.mem
 rtl_bt/rtl8723b_config.bin
 rtl_bt/rtl8723bs_config.bin
-wlwifi-SoSnj-a0-mr-a0-59.ucode
 rtl_bt/rtl8723ds_config.bin
 rtl_bt/rtl8723ds_fw.bin
 rtl_bt/rtl8761a_config.bin
@@ -349,6 +351,7 @@ wil6210_sparrow_plus.fw
 wil6436.brd
 wil6436.fw
 wlan/prima/WCNSS_qcom_wlan_nv.bin
+wlwifi-SoSnj-a0-mr-a0-59.ucode
 zd1201-ap.fw
 zd1201.fw
 )) {
