@@ -379,6 +379,8 @@ while(defined(my $line = <$fd>)) {
     chomp $line;
     my ($fw, $mod) = split(/\s+/, $line, 2);
 
+    next if $fw =~ m/\b(?:microcode_amd|amd_sev_)/; # contained in amd64-microcode
+
     my $fw_name = basename($fw);
     $fwbase_name->{$fw_name} = 1;
 
