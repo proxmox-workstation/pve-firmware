@@ -1,3 +1,11 @@
+pve-firmware (3.5-1) stable; urgency=medium
+
+  * update firmware to 20220708
+
+  * skip amd microcode, let it ship by amd64-microcode
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Jul 2022 13:11:08 +0200
+
 pve-firmware (3.4-2) stable; urgency=medium
 
   * update linux-firmware to current master
