@@ -397,7 +397,6 @@ while(defined(my $line = <$fd>)) {
     next if $fw =~ m|^BCM2033|;
 
     next if $fw =~ m|^xc3028-v27\.fw|; # found twice!
-    next if $fw =~ m|.inp|; # where are those files?
     next if $fw =~ m|^ueagle-atm/|; # where are those files?
 
     next if $fwdone->{$fw};
@@ -483,7 +482,7 @@ while(defined(my $line = <$fd>)) {
     }
 
     next if $ALLOW_MISSING->{$fw};
-    next if $fw =~ m|^dvb-|;
+    next if $fw =~ m|^dvb-| || $fw =~ m|\.inp$|;
 
     warn "ERROR: unable to find firmware ($module): $fw\n";
     $error++;
