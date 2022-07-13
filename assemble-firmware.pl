@@ -15,7 +15,7 @@ die "no firmware list specified" if !$fwlist || ! -f $fwlist;
 my $target = shift;
 die "no target directory" if !$target || ! -d $target;
 
-my $skip = {};
+my $ALLOW_MISSING = {};
 # debian squeeze also misses those files
 foreach my $fw (qw(
 3826.arm
@@ -355,7 +355,7 @@ wlwifi-SoSnj-a0-mr-a0-59.ucode
 zd1201-ap.fw
 zd1201.fw
 )) {
-    $skip->{$fw} = 1;
+    $ALLOW_MISSING->{$fw} = 1;
 }
 
 sub copy_fw {
@@ -388,12 +388,10 @@ while(defined(my $line = <$fd>)) {
     # skip ZyDas usb wireless, use package zd1211-firmware instead
     next if $fw =~ m|^zd1211/|; 
 
-    # skip atmel at76c50x wireless networking chips.
-    # use package atmel-firmware instead
+    # skip atmel at76c50x wireless networking chips, use package atmel-firmware instead
     next if $fw =~ m|^atmel_at76c50|;
 
-    # skip Bluetooth dongles based on the Broadcom BCM203x 
-    # use package bluez-firmware instead
+    # skip Bluetooth dongles based on the Broadcom BCM203x, use package bluez-firmware instead
     next if $fw =~ m|^BCM2033|;
 
     next if $fw =~ m|^xc3028-v27\.fw|; # found twice!
@@ -416,7 +414,7 @@ while(defined(my $line = <$fd>)) {
     }
  
     if (-e "$target/$fw") {
-	warn "WARN: allowed to skip existing '$fw'\n" if $skip->{$fw};
+	warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
 	next;
     }
     if (-f "$fwsrc3/$fw") {
@@ -436,17 +434,17 @@ while(defined(my $line = <$fd>)) {
 		my $f_name = basename($f);
 		$fwbase_name->{$f_name} = 1;
 	    }
-	    warn "WARN: allowed to skip existing '$fw'\n" if $skip->{$fw};
+	    warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
 	    next;
 	} else {
-	    next if $skip->{$fw};
+	    next if $ALLOW_MISSING->{$fw};
 	    warn "ERROR: unable to find FW for GLOB ($module): $fw\n";
 	    $error++;
 	}
     }
 
     if ($fw =~ m|/|) {
-	next if $skip->{$fw};
+	next if $ALLOW_MISSING->{$fw};
 
 	warn "ERROR: unable to find firmware ($module): $fw\n";
 	$error++;
@@ -482,7 +480,7 @@ while(defined(my $line = <$fd>)) {
 	next;
     }
 
-    next if $skip->{$fw};
+    next if $ALLOW_MISSING->{$fw};
     next if $fw =~ m|^dvb-|;
 
     warn "ERROR: unable to find firmware ($module): $fw\n";
