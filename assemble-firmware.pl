@@ -388,7 +388,7 @@ while(defined(my $line = <$fd>)) {
     next if $mod =~ m|^kernel/drivers/isdn|;
 
     # skip ZyDas usb wireless, use package zd1211-firmware instead
-    next if $fw =~ m|^zd1211/|; 
+    next if $fw =~ m|^zd1211/|;
 
     # skip atmel at76c50x wireless networking chips, use package atmel-firmware instead
     next if $fw =~ m|^atmel_at76c50|;
@@ -413,7 +413,7 @@ while(defined(my $line = <$fd>)) {
     if ($fw eq 'PE520.cis') {
 	$fw = 'cis/PE520.cis';
     }
- 
+
     if (-e "$target/$fw") {
 	warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
 	next;
