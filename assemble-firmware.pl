@@ -318,6 +318,8 @@ ql2600_fw.bin
 ql2700_fw.bin
 ql8100_fw.bin
 ql8300_fw.bin
+regulatory.db
+regulatory.db.p7s
 renesas_usb_fw.mem
 rtl_bt/rtl8723b_config.bin
 rtl_bt/rtl8723bs_config.bin
