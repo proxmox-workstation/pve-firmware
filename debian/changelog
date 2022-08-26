@@ -1,3 +1,11 @@
+pve-firmware (3.5-2) stable; urgency=medium
+
+  * update firmware to 20220815
+
+  * add fwlist-5.15.53-1-pve
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 26 Aug 2022 17:59:33 +0200
+
 pve-firmware (3.5-1) stable; urgency=medium
 
   * update firmware to 20220708
