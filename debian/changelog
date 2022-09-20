@@ -1,3 +1,9 @@
+pve-firmware (3.5-3) stable; urgency=medium
+
+  * update firmware to 20220913
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Sep 2022 08:36:50 +0200
+
 pve-firmware (3.5-2) stable; urgency=medium
 
   * update firmware to 20220815
