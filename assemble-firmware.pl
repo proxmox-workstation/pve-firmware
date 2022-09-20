@@ -77,13 +77,8 @@ b43/ucode9.fw
 b43legacy/ucode2.fw
 b43legacy/ucode4.fw
 bfubase.frm
-brcm/brcm/brcmfmac*-pcie.*.txt
-brcm/brcm/brcmfmac*-sdio.*.txt
-brcm/brcmfmac*-pcie.*.bin
-brcm/brcmfmac*-pcie.*.txt
 brcm/brcmfmac*-pcie.txt
 brcm/brcmfmac*-sdio.*.bin
-brcm/brcmfmac*-sdio.*.txt
 brcm/brcmfmac-sdio.bin
 brcm/brcmfmac-sdio.txt
 brcm/brcmfmac43143-sdio.txt
