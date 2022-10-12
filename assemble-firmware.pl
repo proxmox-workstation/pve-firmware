@@ -445,44 +445,38 @@ sub copy_fw {
     my ($src, $dstfw) = @_;
 
     my $dest = "$target/$dstfw";
-
-    return if -f $dest;
+    return if -f $dest || -f "${dest}.xz";
 
     mkpath dirname($dest);
     system ("cp '$src' '$dest'") == 0 or die "copy '$src' to '$dest' failed!\n";
 }
 
-my $fwdone = {};
-my $fwbase_name = {};
+my ($fwdone, $fwbase_name, $error) = ({}, {}, 0);
 
-my $error = 0;
+sub add_fw :prototype($$) {
+    my ($fw, $mod) = @_;
 
-open(my $fd, '<', $fwlist);
-while(defined(my $line = <$fd>)) {
-    chomp $line;
-    my ($fw, $mod) = split(/\s+/, $line, 2);
-
-    next if $fw =~ m/\b(?:microcode_amd|amd_sev_)/; # contained in amd64-microcode
+    return if $fw =~ m/\b(?:microcode_amd|amd_sev_)/; # contained in amd64-microcode
 
     my $fw_name = basename($fw);
     $fwbase_name->{$fw_name} = 1;
 
-    next if $mod =~ m|^kernel/sound|;
-    next if $mod =~ m|^kernel/drivers/isdn|;
+    return if $mod =~ m|^kernel/sound|;
+    return if $mod =~ m|^kernel/drivers/isdn|;
 
     # skip ZyDas usb wireless, use package zd1211-firmware instead
-    next if $fw =~ m|^zd1211/|;
+    return if $fw =~ m|^zd1211/|;
 
     # skip atmel at76c50x wireless networking chips, use package atmel-firmware instead
-    next if $fw =~ m|^atmel_at76c50|;
+    return if $fw =~ m|^atmel_at76c50|;
 
     # skip Bluetooth dongles based on the Broadcom BCM203x, use package bluez-firmware instead
-    next if $fw =~ m|^BCM2033|;
+    return if $fw =~ m|^BCM2033|;
 
-    next if $fw =~ m|^xc3028-v27\.fw|; # found twice!
-    next if $fw =~ m|^ueagle-atm/|; # where are those files?
+    return if $fw =~ m|^xc3028-v27\.fw|; # found twice!
+    return if $fw =~ m|^ueagle-atm/|; # where are those files?
 
-    next if $fwdone->{$fw};
+    return if $fwdone->{$fw};
     $fwdone->{$fw} = 1;
 
     my $fwdest = $fw;
@@ -499,11 +493,11 @@ while(defined(my $line = <$fd>)) {
 
     if (-e "$target/$fw") {
 	warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
-	next;
+	return;
     }
     if (-f "$fwsrc3/$fw") {
 	copy_fw("$fwsrc3/$fw", $fwdest);
-	next;
+	return;
     }
 
     my $module = basename($mod);
@@ -519,20 +513,20 @@ while(defined(my $line = <$fd>)) {
 		$fwbase_name->{$f_name} = 1;
 	    }
 	    warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
-	    next;
+	    return;
 	} else {
-	    next if $ALLOW_MISSING->{$fw};
+	    return if $ALLOW_MISSING->{$fw};
 	    warn "ERROR: unable to find FW for GLOB ($module): $fw\n";
 	    $error++;
 	}
     }
 
     if ($fw =~ m|/|) {
-	next if $ALLOW_MISSING->{$fw};
+	return if $ALLOW_MISSING->{$fw};
 
 	warn "ERROR: unable to find firmware ($module): $fw\n";
 	$error++;
-	next;
+	return;
     }
 
     my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
@@ -545,7 +539,7 @@ while(defined(my $line = <$fd>)) {
 		$found = 1;
 	    }
 	}
-	next if $found;
+	return if $found;
     }
 
     $sr = `find '$fwsrc2' -type f -name '$name'`;
@@ -553,7 +547,7 @@ while(defined(my $line = <$fd>)) {
     if ($sr) {
 	print "found $fw in $sr\n";
 	copy_fw($sr, $fwdest);
-	next;
+	return;
     }
 
     $sr = `find '$fwsrc3' -type f -name '$name'`;
@@ -561,15 +555,23 @@ while(defined(my $line = <$fd>)) {
     if ($sr) {
 	print "found $fw in $sr\n";
 	copy_fw($sr, $fwdest);
-	next;
+	return;
     }
 
-    next if $ALLOW_MISSING->{$fw};
-    next if $fw =~ m|^dvb-| || $fw =~ m|\.inp$|;
+    return if $ALLOW_MISSING->{$fw};
+    return if $fw =~ m|^dvb-| || $fw =~ m|\.inp$|;
 
     warn "ERROR: unable to find firmware ($module): $fw\n";
     $error++;
-    next;
+    return;
+}
+
+open(my $fd, '<', $fwlist);
+while(defined(my $line = <$fd>)) {
+    chomp $line;
+    my ($fw, $mod) = split(/\s+/, $line, 2);
+
+    add_fw($fw, $mod);
 }
 close($fd);
 
