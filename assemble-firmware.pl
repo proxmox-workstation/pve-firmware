@@ -15,6 +15,10 @@ die "no firmware list specified" if !$fwlist || ! -f $fwlist;
 my $target = shift;
 die "no target directory" if !$target || ! -d $target;
 
+my $FORCE_INCLUDE = [
+    'iwlwifi-*.pnvm',
+];
+
 my $ALLOW_MISSING = {};
 # debian squeeze also misses those files
 foreach my $fw (qw(
@@ -574,6 +578,10 @@ while(defined(my $line = <$fd>)) {
     add_fw($fw, $mod);
 }
 close($fd);
+
+for my $fw ($FORCE_INCLUDE->@*) {
+    add_fw($fw, 'FORCE_INCLUDE');
+}
 
 exit($error) if $error;
 
