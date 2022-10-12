@@ -1,3 +1,16 @@
+pve-firmware (3.5-5) stable; urgency=medium
+
+  * shipped firmware files XZ compressed, reducing install size to 27.9 %
+
+  * add fwlist-5.19-iwlwifi-extra to get a newer version of some iwlwifi
+    ucodes for the 5.19 kernel
+
+  * add a force-include list of used, but not referenced FW files. For now it
+    only contains the pnvm FW files fixing usage of the AX210 cards on some
+    setups
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 12 Oct 2022 18:22:56 +0200
+
 pve-firmware (3.5-4) stable; urgency=medium
 
   * add fwlist-5.19.0-1-pve
