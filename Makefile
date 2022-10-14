@@ -1,20 +1,21 @@
 include /usr/share/dpkg/pkg-info.mk
 
-FW_DEB=pve-firmware_${DEB_VERSION}_all.deb
+FW_DEB=pve-firmware_$(DEB_VERSION)_all.deb
 
 GITVERSION:=$(shell git rev-parse HEAD)
 
 export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
 
-DEBS=${FW_DEB}
+DEBS=$(FW_DEB)
+BUILDDIR=fwdata
 
 .PHONY: deb
-deb: ${DEBS}
+deb: $(DEBS)
 
-${FW_DEB}: fwdata
-	cp -a debian fwdata
-	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout ${GITVERSION}" >fwdata/debian/SOURCE
-	cd fwdata; dpkg-buildpackage -b -us -uc
+$(FW_DEB): $(BUILDDIR)
+	cp -a debian $(BUILDDIR)
+	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $(GITVERSION)" >$(BUILDDIR)/debian/SOURCE
+	cd $(BUILDDIR); dpkg-buildpackage -b -us -uc
 
 # NOTE: when collapsing FW lists keep major.minor still separated, so we can sunset the older ones
 # without user impact safely. The last oldstable list needs to be kept avoid breakage on upgrade
@@ -33,17 +34,17 @@ fw.list: fwlist-5.19-iwlwifi-extra
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@
 
-fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
-	rm -rf fwdata fwdata.tmp
-	mkdir -p fwdata.tmp/lib/firmware
-	cd linux-firmware.git; ./copy-firmware.sh -v ../fwdata.tmp/lib/firmware/
-	./assemble-firmware.pl fw.list fwdata.tmp/lib/firmware
-	find fwdata.tmp/lib/firmware -empty -type d -delete
-	install -d fwdata.tmp/usr/share/doc/pve-firmware
-	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
-	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses
-	cp linux-firmware.git/LICEN[CS]E* fwdata.tmp/usr/share/doc/pve-firmware/licenses
-	mv fwdata.tmp fwdata
+$(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
+	rm -rf $(BUILDDIR) $(BUILDDIR).tmp
+	mkdir -p $(BUILDDIR).tmp/lib/firmware
+	cd linux-firmware.git; ./copy-firmware.sh -v ../$(BUILDDIR).tmp/lib/firmware/
+	./assemble-firmware.pl fw.list $(BUILDDIR).tmp/lib/firmware
+	find $(BUILDDIR).tmp/lib/firmware -empty -type d -delete
+	install -d $(BUILDDIR).tmp/usr/share/doc/pve-firmware
+	cp linux-firmware.git/WHENCE $(BUILDDIR).tmp/usr/share/doc/pve-firmware/README
+	install -d $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
+	cp linux-firmware.git/LICEN[CS]E* $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
+	mv $(BUILDDIR).tmp $(BUILDDIR)
 
 # upgrade to current master
 .PHONY: update_modules
@@ -56,9 +57,9 @@ submodule dvb-firmware.git/README linux-firmware.git/WHENCE:
 	test -f "linux-firmware.git/WHENCE" || git submodule update --init
 
 .PHONY: upload
-upload: ${DEBS}
-	tar cf - ${DEBS} | ssh repoman@repo.proxmox.com -- upload --product pve,pmg,pbs --dist bullseye
+upload: $(DEBS)
+	tar cf - $(DEBS) | ssh repoman@repo.proxmox.com -- upload --product pve,pmg,pbs --dist bullseye
 
 .PHONY: clean
 clean:
-	rm -rf fwdata fw.list *.deb *.buildinfo *.dsc *.changes
+	rm -rf $(BUILDDIR) $(BUILDDIR).tmp fw.list *.deb *.buildinfo *.dsc *.changes
