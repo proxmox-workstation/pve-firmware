@@ -44,6 +44,10 @@ $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	cp linux-firmware.git/WHENCE $(BUILDDIR).tmp/usr/share/doc/pve-firmware/README
 	install -d $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
 	cp linux-firmware.git/LICEN[CS]E* $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
+	# we only compress big ones that almost definitively ain't required in the initrd
+	# or are so big and unbuyable (netronome...)
+	cd $(BUILDDIR).tmp/lib/firmware; find . -type f \( -name 'i[wb][lt]*' -o -path '*/netronome/*' \) -print0 | xargs -0 -n1 -P0 -- xz -C crc32
+	cd $(BUILDDIR).tmp/lib/firmware; find . -xtype l -print0 | xargs -0 -n1 -P0 -- sh -c 'ln -sf "$$(readlink "$$0").xz" "$$0"; mv "$$0" "$$0.xz"'
 	mv $(BUILDDIR).tmp $(BUILDDIR)
 
 # upgrade to current master
