@@ -33,9 +33,6 @@ fw.list: fwlist-5.19-iwlwifi-extra
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@
 
-# kernel can read compressed files since 5.3, use xz to reduces installed-size to 27 %
-# maybe switch to zstd with next major release (kernel support since 5.19) for less resource usage?
-# Use https://lore.kernel.org/all/20210123102625.589472-1-pbrobinson@gmail.com/ once v3/upstreamed
 fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf fwdata fwdata.tmp
 	mkdir -p fwdata.tmp/lib/firmware
@@ -46,8 +43,6 @@ fwdata: linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	cp linux-firmware.git/WHENCE fwdata.tmp/usr/share/doc/pve-firmware/README
 	install -d fwdata.tmp/usr/share/doc/pve-firmware/licenses
 	cp linux-firmware.git/LICEN[CS]E* fwdata.tmp/usr/share/doc/pve-firmware/licenses
-	cd fwdata.tmp/lib/firmware; find . -type f -print0 | xargs -0 -n1 -P0 -- xz -C crc32
-	cd fwdata.tmp/lib/firmware; find . -type l -print0 | xargs -0 -n1 -P0 -- sh -c 'ln -sf "$$(readlink "$$0").xz" "$$0"; mv "$$0" "$$0.xz"'
 	mv fwdata.tmp fwdata
 
 # upgrade to current master
