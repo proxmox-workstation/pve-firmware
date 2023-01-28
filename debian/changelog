@@ -1,3 +1,9 @@
+pve-firmware (3.6-3) stable; urgency=medium
+
+  * update linux firmware to 20230117
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 28 Jan 2023 16:05:10 +0100
+
 pve-firmware (3.6-2) stable; urgency=medium
 
   * update linux firmware to 20221214
