@@ -36,13 +36,3 @@ intel/ibt-20-1-3.ddc kernel/drivers/bluetooth/btintel.ko
 intel/ibt-20-1-3.sfi kernel/drivers/bluetooth/btintel.ko
 intel/ibt-20-1-4.ddc kernel/drivers/bluetooth/btintel.ko
 intel/ibt-20-1-4.sfi kernel/drivers/bluetooth/btintel.ko
-iwlwifi-Qu-b0-hr-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-Qu-b0-jf-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-Qu-c0-hr-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-QuZ-a0-hr-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-QuZ-a0-jf-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-cc-a0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-so-a0-gf-a0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-so-a0-hr-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-so-a0-jf-b0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
-iwlwifi-ty-a0-gf-a0-71.ucode kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko
