@@ -1,3 +1,12 @@
+pve-firmware (3.6-4) stable; urgency=medium
+
+  * extra iwlwifi list: drop some transitional FWs
+  * add fwlist-6.1.10-1-pve
+  * add fwlist-6.2.2-1-pve
+  * update linux firmware to 20230310
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Mar 2023 18:23:29 +0100
+
 pve-firmware (3.6-3) stable; urgency=medium
 
   * update linux firmware to 20230117
