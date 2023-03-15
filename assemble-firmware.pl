@@ -158,6 +158,10 @@ brcm/brcmfmac4350-pcie.txt
 brcm/brcmfmac4354-pcie.bin
 brcm/brcmfmac4354-pcie.txt
 brcm/brcmfmac4354-sdio.txt
+brcm/brcmfmac4355-pcie.bin
+brcm/brcmfmac4355-pcie.clm_blob
+brcm/brcmfmac4355c1-pcie.bin
+brcm/brcmfmac4355c1-pcie.clm_blob
 brcm/brcmfmac4356-pcie.txt
 brcm/brcmfmac43570-pcie.txt
 brcm/brcmfmac4358-pcie.txt
@@ -165,6 +169,10 @@ brcm/brcmfmac4359-pcie.bin
 brcm/brcmfmac4359-sdio.bin
 brcm/brcmfmac43602-pcie.txt
 brcm/brcmfmac4364-pcie.bin
+brcm/brcmfmac4364b2-pcie.bin
+brcm/brcmfmac4364b2-pcie.clm_blob
+brcm/brcmfmac4364b3-pcie.bin
+brcm/brcmfmac4364b3-pcie.clm_blob
 brcm/brcmfmac4365b-pcie.bin
 brcm/brcmfmac4365b-pcie.txt
 brcm/brcmfmac4365c-pcie.bin
@@ -172,6 +180,8 @@ brcm/brcmfmac4366b-pcie.txt
 brcm/brcmfmac4371-pcie.txt
 brcm/brcmfmac43752-sdio.bin
 brcm/brcmfmac43752-sdio.clm_blob
+brcm/brcmfmac4377b3-pcie.bin
+brcm/brcmfmac4377b3-pcie.clm_blob
 brcm/brcmfmac4378b1-pcie.bin
 brcm/brcmfmac4378b1-pcie.clm_blob
 brcm/brcmfmac89459-pcie.bin
