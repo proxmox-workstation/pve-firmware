@@ -13,8 +13,6 @@ BUILDDIR=fwdata
 deb: $(DEBS)
 
 $(FW_DEB): $(BUILDDIR)
-	cp -a debian $(BUILDDIR)
-	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $(GITVERSION)" >$(BUILDDIR)/debian/SOURCE
 	cd $(BUILDDIR); dpkg-buildpackage -b -us -uc
 
 # NOTE: when collapsing FW lists keep major.minor still separated, so we can sunset the older ones
@@ -41,6 +39,8 @@ fw.list: fwlist-6.2.6-1-pve
 $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf $@ $@.tmp
 	mkdir -p $@.tmp/lib/firmware
+	cp -a debian $@.tmp
+	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $(GITVERSION)" >$@.tmp/debian/SOURCE
 	cd linux-firmware.git; ./copy-firmware.sh -v ../$@.tmp/lib/firmware/
 	./assemble-firmware.pl fw.list $@.tmp/lib/firmware
 	find $@.tmp/lib/firmware -empty -type d -delete
