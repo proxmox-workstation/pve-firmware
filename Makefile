@@ -4,8 +4,6 @@ FW_DEB=pve-firmware_$(DEB_VERSION)_all.deb
 
 GITVERSION:=$(shell git rev-parse HEAD)
 
-export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
-
 DEBS=$(FW_DEB)
 BUILDDIR=fwdata
 
