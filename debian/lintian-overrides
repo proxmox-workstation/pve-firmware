@@ -1,0 +1,6 @@
+pve-firmware: arch-independent-package-contains-binary-or-object [lib/firmware/*]
+pve-firmware: executable-not-elf-or-script [lib/firmware/*]
+pve-firmware: national-encoding [usr/share/doc/pve-firmware/licenses/*]
+pve-firmware: statically-linked-binary [lib/firmware/*]
+pve-firmware: unstripped-binary-or-object [lib/firmware/*]
+pve-firmware: windows-devel-file-in-package [lib/firmware/*]
