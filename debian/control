@@ -7,6 +7,7 @@ Build-Depends: debhelper-compat (= 12),
 
 Package: pve-firmware
 Architecture: all
+Depends: ${misc:Depends},
 Suggests: linux-image,
 Conflicts: firmware-amd-graphics,
            firmware-atheros,
@@ -45,8 +46,8 @@ Replaces: firmware-amd-graphics,
           firmware-linux-nonfree,
           firmware-misc-nonfree,
           firmware-myricom,
-          firmware-netxen,
           firmware-netronome,
+          firmware-netxen,
           firmware-qlogic,
           firmware-ralink,
           firmware-realtek,
