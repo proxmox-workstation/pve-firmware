@@ -70,8 +70,9 @@ submodule dvb-firmware.git/README linux-firmware.git/WHENCE:
 	test -f "linux-firmware.git/WHENCE" || git submodule update --init
 
 .PHONY: upload
+upload: UPLOAD_DIST ?= $(DEB_DISTRIBUTION)
 upload: $(DEBS)
-	tar cf - $(DEBS) | ssh repoman@repo.proxmox.com -- upload --product pve,pmg,pbs --dist bullseye
+	tar cf - $(DEBS) | ssh repoman@repo.proxmox.com -- upload --product pve,pmg,pbs --dist $(UPLOAD_DIST)
 
 .PHONY: clean
 clean:
