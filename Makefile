@@ -68,4 +68,5 @@ upload: $(DEBS)
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILDDIR) $(BUILDDIR).tmp fw.list *.deb *.buildinfo *.dsc *.changes
+	rm -rf $(PACKAGE)-[0-9]*/
+	rm -f $(PACKAGE)*.tar* *.deb *.dsc *.changes *.dsc *.buildinfo *.build
