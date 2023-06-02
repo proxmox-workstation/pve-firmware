@@ -1,9 +1,6 @@
 include /usr/share/dpkg/pkg-info.mk
 
 FW_DEB=pve-firmware_$(DEB_VERSION)_all.deb
-
-GITVERSION:=$(shell git rev-parse HEAD)
-
 DEBS=$(FW_DEB)
 BUILDDIR=fwdata
 
@@ -38,7 +35,7 @@ $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf $@ $@.tmp
 	mkdir -p $@.tmp/lib/firmware
 	cp -a debian $@.tmp
-	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $(GITVERSION)" >$@.tmp/debian/SOURCE
+	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $$(git rev-parse HEAD)" >$@.tmp/debian/SOURCE
 	cd linux-firmware.git; ./copy-firmware.sh -v ../$@.tmp/lib/firmware/
 	./assemble-firmware.pl fw.list $@.tmp/lib/firmware
 	find $@.tmp/lib/firmware -empty -type d -delete
