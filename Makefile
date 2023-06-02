@@ -1,8 +1,11 @@
 include /usr/share/dpkg/pkg-info.mk
 
-FW_DEB=pve-firmware_$(DEB_VERSION)_all.deb
+PACKAGE = pve-firmware
+
+BUILDDIR ?= $(PACKAGE)-$(DEB_VERSION_UPSTREAM)
+
+FW_DEB=$(PACKAGE)_$(DEB_VERSION)_all.deb
 DEBS=$(FW_DEB)
-BUILDDIR=fwdata
 
 .PHONY: deb
 deb: $(DEBS)
