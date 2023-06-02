@@ -3,7 +3,9 @@ include /usr/share/dpkg/pkg-info.mk
 PACKAGE = pve-firmware
 
 BUILDDIR ?= $(PACKAGE)-$(DEB_VERSION_UPSTREAM)
+ORIG_SRC_TAR=$(PACKAGE)_$(DEB_VERSION_UPSTREAM).orig.tar.gz
 
+DSC=$(PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION).dsc
 FW_DEB=$(PACKAGE)_$(DEB_VERSION)_all.deb
 DEBS=$(FW_DEB)
 
@@ -12,6 +14,18 @@ deb: $(DEBS)
 
 $(FW_DEB): $(BUILDDIR)
 	cd $(BUILDDIR); dpkg-buildpackage -b -us -uc
+
+.PHONY: dsc
+dsc:
+	$(MAKE) clean
+	$(MAKE) $(DSC)
+	lintian $(DSC)
+
+$(DSC): $(ORIG_SRC_TAR) $(BUILDDIR)
+	cd $(BUILDDIR); dpkg-buildpackage -S -us -uc -d
+
+sbuild: $(DSC)
+	sbuild $(DSC)
 
 # NOTE: when collapsing FW lists keep major.minor still separated, so we can sunset the older ones
 # without user impact safely. The last oldstable list needs to be kept avoid breakage on upgrade
@@ -33,6 +47,9 @@ fw.list: fwlist-6.2.6-1-pve
 	rm -f $@.tmp $@
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@
+
+$(ORIG_SRC_TAR): $(BUILDDIR)
+	tar czf $(ORIG_SRC_TAR) --exclude="$(BUILDDIR)/debian" $(BUILDDIR)
 
 $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf $@ $@.tmp
