@@ -39,20 +39,20 @@ fw.list: fwlist-6.2.6-1-pve
 	mv $@.tmp $@
 
 $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
-	rm -rf $(BUILDDIR) $(BUILDDIR).tmp
-	mkdir -p $(BUILDDIR).tmp/lib/firmware
-	cd linux-firmware.git; ./copy-firmware.sh -v ../$(BUILDDIR).tmp/lib/firmware/
-	./assemble-firmware.pl fw.list $(BUILDDIR).tmp/lib/firmware
-	find $(BUILDDIR).tmp/lib/firmware -empty -type d -delete
-	install -d $(BUILDDIR).tmp/usr/share/doc/pve-firmware
-	cp linux-firmware.git/WHENCE $(BUILDDIR).tmp/usr/share/doc/pve-firmware/README
-	install -d $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
-	cp linux-firmware.git/LICEN[CS]E* $(BUILDDIR).tmp/usr/share/doc/pve-firmware/licenses
+	rm -rf $@ $@.tmp
+	mkdir -p $@.tmp/lib/firmware
+	cd linux-firmware.git; ./copy-firmware.sh -v ../$@.tmp/lib/firmware/
+	./assemble-firmware.pl fw.list $@.tmp/lib/firmware
+	find $@.tmp/lib/firmware -empty -type d -delete
+	install -d $@.tmp/usr/share/doc/pve-firmware
+	cp linux-firmware.git/WHENCE $@.tmp/usr/share/doc/pve-firmware/README
+	install -d $@.tmp/usr/share/doc/pve-firmware/licenses
+	cp linux-firmware.git/LICEN[CS]E* $@.tmp/usr/share/doc/pve-firmware/licenses
 	# we only compress big ones that almost definitively ain't required in the initrd
 	# or are so big and unbuyable (netronome...)
-	cd $(BUILDDIR).tmp/lib/firmware; find . -type f \( -name 'i[wb][lt]*' -o -path '*/netronome/*' \) -print0 | xargs -0 -n1 -P0 -- xz -C crc32
-	cd $(BUILDDIR).tmp/lib/firmware; find . -xtype l -print0 | xargs -0 -n1 -P0 -- sh -c 'ln -sf "$$(readlink "$$0").xz" "$$0"; mv "$$0" "$$0.xz"'
-	mv $(BUILDDIR).tmp $(BUILDDIR)
+	cd $@.tmp/lib/firmware; find . -type f \( -name 'i[wb][lt]*' -o -path '*/netronome/*' \) -print0 | xargs -0 -n1 -P0 -- xz -C crc32
+	cd $@.tmp/lib/firmware; find . -xtype l -print0 | xargs -0 -n1 -P0 -- sh -c 'ln -sf "$$(readlink "$$0").xz" "$$0"; mv "$$0" "$$0.xz"'
+	mv $@.tmp $@
 
 # upgrade to current master
 .PHONY: update_modules
