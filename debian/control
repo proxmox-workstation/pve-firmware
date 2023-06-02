@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Proxmox Support Team <support@proxmox.com>
 Homepage: http://www.proxmox.com
-Build-Depends: debhelper (>= 11)
+Build-Depends: debhelper-compat (= 12),
 
 Package: pve-firmware
 Architecture: all
