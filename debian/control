@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Proxmox Support Team <support@proxmox.com>
 Homepage: http://www.proxmox.com
 Build-Depends: debhelper-compat (= 12),
+Standards-Version: 4.6.1
 
 Package: pve-firmware
 Architecture: all
