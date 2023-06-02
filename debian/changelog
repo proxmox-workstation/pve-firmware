@@ -1,3 +1,14 @@
+pve-firmware (3.7-1) bookworm; urgency=medium
+
+  * update linux-firmware to current master (~ 20230515)
+
+  * drop outdated firmware lists for 5.4, 5.11, 5.13, 5.19 and 6.1 kernel.
+    Those kernel release series are not supported as upgrade source to the any
+    (upcoming) Debian 12 Bookworm based release, only the 5.15 kernel and 6.2
+    kernel are supported for that.
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 02 Jun 2023 09:29:10 +0200
+
 pve-firmware (3.6-5) stable; urgency=medium
 
   * update linux firmware to 20230404
