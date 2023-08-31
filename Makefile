@@ -34,6 +34,7 @@ fw.list: fwlist-5.15.x.y-pve
 fw.list: fwlist-iwlwifi-extra
 fw.list: fwlist-6.2.2-1-pve
 fw.list: fwlist-6.2.6-1-pve
+fw.list: fwlist-6.2.16-11-pve
 	rm -f $@.tmp $@
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@

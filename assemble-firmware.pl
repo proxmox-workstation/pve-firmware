@@ -405,6 +405,12 @@ regulatory.db.p7s
 renesas_usb_fw.mem
 rtl_bt/rtl8723b_config.bin
 rtl_bt/rtl8723bs_config.bin
+rtl_bt/rtl8723cs_cg_config.bin
+rtl_bt/rtl8723cs_cg_fw.bin
+rtl_bt/rtl8723cs_vf_config.bin
+rtl_bt/rtl8723cs_vf_fw.bin
+rtl_bt/rtl8723cs_xx_config.bin
+rtl_bt/rtl8723cs_xx_fw.bin
 rtl_bt/rtl8723ds_config.bin
 rtl_bt/rtl8723ds_fw.bin
 rtl_bt/rtl8761a_config.bin
