@@ -1,3 +1,12 @@
+pve-firmware (3.8-1) bookworm; urgency=medium
+
+  * update linux-firmware to current master (~ 20230804)
+
+  * compress each firmware file with ZSTD (supported since Linux 5.19),
+    reducing the installed-size of this package by 126 MB.
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Sep 2023 13:12:25 +0200
+
 pve-firmware (3.7-1) bookworm; urgency=medium
 
   * update linux-firmware to current master (~ 20230515)
