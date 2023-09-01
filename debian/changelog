@@ -1,3 +1,11 @@
+pve-firmware (3.8-2) bookworm; urgency=medium
+
+  * revert compress each firmware file with ZSTD for now until we have support
+    in initramfs-tools to also recognise those paths too, as some modules like
+    DRM/GPU ones require a FW there too.
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Sep 2023 15:39:25 +0200
+
 pve-firmware (3.8-1) bookworm; urgency=medium
 
   * update linux-firmware to current master (~ 20230804)
