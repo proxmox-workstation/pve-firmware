@@ -47,7 +47,7 @@ $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	mkdir -p $@.tmp/lib/firmware
 	cp -a debian $@.tmp
 	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $$(git rev-parse HEAD)" >$@.tmp/debian/SOURCE
-	cd linux-firmware.git; ./copy-firmware.sh -v --zstd -19 ../$@.tmp/lib/firmware/
+	cd linux-firmware.git; ./copy-firmware.sh -v ../$@.tmp/lib/firmware/
 	./assemble-firmware.pl fw.list $@.tmp/lib/firmware
 	find $@.tmp/lib/firmware -empty -type d -delete
 	install -d $@.tmp/usr/share/doc/pve-firmware
