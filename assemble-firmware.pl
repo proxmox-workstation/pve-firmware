@@ -488,7 +488,7 @@ sub add_fw :prototype($$) {
 	$fw = 'cis/PE520.cis';
     }
 
-    if (-e "$target/$fw") {
+    if (-e "$target/$fw" || -e "$target/$fw.zst") {
 	warn "WARN: allowed to skip existing '$fw'\n" if $ALLOW_MISSING->{$fw};
 	return;
     }
@@ -501,7 +501,7 @@ sub add_fw :prototype($$) {
     my $name = basename($fw);
 
     if ($name =~ /\*/) {
-	my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
+	my $sr = `find '$target' \\( -type f -o -type l \\) \\( -name '$name' -o -name '$name.zst' \\)`;
 	chomp $sr;
 	if ($sr) {
 	    for my $f (split("\n", $sr)) {
@@ -526,12 +526,12 @@ sub add_fw :prototype($$) {
 	return;
     }
 
-    my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
+    my $sr = `find '$target' \\( -type f -o -type l \\) \\( -name '$name' -o -name '$name.zst' \\)`;
     chomp $sr;
     if ($sr) {
 	my $found = 0;
 	for my $f (split("\n", $sr)) {
-	    if ($f =~ /$fw$/) {
+	    if ($f =~ /$fw(?:\.zst)?$/) {
 		print "found linked $fw in $f\n";
 		$found = 1;
 	    }
@@ -598,10 +598,11 @@ for my $f (@$all_fw_files) {
 
 for my $f (@$all_fw_files) {
     my $name = basename($f);
+    $name =~ s/\.zst$//;
 
-    if ($fwbase_name->{$name}) {
+    if ($fwbase_name->{$name} || $fwbase_name->{"$name.zst"}) {
 	$keep++;
-    } elsif ($link_target->{$name}) {
+    } elsif ($link_target->{$name} || $link_target->{"${name}.zst"}) {
 	#print "skip link target '$f'\n";
 	$keep++;
     } else {
