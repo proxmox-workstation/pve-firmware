@@ -2070,8 +2070,9 @@ ti-connectivity/wl128x-fw-5-plt.bin kernel/drivers/net/wireless/ti/wl12xx/wl12xx
 ti-connectivity/wl128x-fw-5-sr.bin kernel/drivers/net/wireless/ti/wl12xx/wl12xx.ko
 ti-connectivity/wl18xx-fw-4.bin kernel/drivers/net/wireless/ti/wl18xx/wl18xx.ko
 tigon/tg3.bin kernel/drivers/net/ethernet/broadcom/tg3.ko
-tigon/tg3_tso5.bin kernel/drivers/net/ethernet/broadcom/tg3.ko
+tigon/tg357766.bin kernel/drivers/net/ethernet/broadcom/tg3.ko
 tigon/tg3_tso.bin kernel/drivers/net/ethernet/broadcom/tg3.ko
+tigon/tg3_tso5.bin kernel/drivers/net/ethernet/broadcom/tg3.ko
 ttusb-budget/dspbootcode.bin kernel/drivers/media/usb/ttusb-budget/dvb-ttusb-budget.ko
 ueagle-atm/930-fpga.bin kernel/drivers/usb/atm/ueagle-atm.ko
 ueagle-atm/adi930.fw kernel/drivers/usb/atm/ueagle-atm.ko
