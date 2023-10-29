@@ -319,7 +319,6 @@ iwlwifi-bz-a0-mr-a0-72.ucode
 iwlwifi-gl-a0-fm-a0-72.ucode
 iwlwifi-gl-b0-fm-b0-72.ucode
 iwlwifi-gl-b0-fm-b0-83.ucode
-iwlwifi-gl-c0-fm-c0-83.ucode
 iwlwifi-ma-a0-fm-a0-66.ucode
 iwlwifi-ma-a0-fm-a0-72.ucode
 iwlwifi-ma-a0-gf-a0-59.ucode
@@ -340,9 +339,6 @@ iwlwifi-ma-a0-mr-a0-63.ucode
 iwlwifi-ma-a0-mr-a0-66.ucode
 iwlwifi-ma-a0-mr-a0-72.ucode
 iwlwifi-ma-a0-mr-a0-83.ucode
-iwlwifi-ma-b0-gf-a0-83.ucode
-iwlwifi-ma-b0-gf4-a0-83.ucode
-iwlwifi-ma-b0-hr-b0-83.ucode
 iwlwifi-ma-b0-mr-a0-83.ucode
 iwlwifi-sc-a0-fm-b0-83.ucode
 iwlwifi-sc-a0-fm-c0-83.ucode
@@ -360,7 +356,6 @@ iwlwifi-so-a0-hr-b0-50.ucode
 iwlwifi-so-a0-hr-b0-59.ucode
 iwlwifi-so-a0-hr-b0-63.ucode
 iwlwifi-so-a0-hr-b0-66.ucode
-iwlwifi-so-a0-hr-b0-83.ucode
 iwlwifi-so-a0-jf-b0-48.ucode
 iwlwifi-so-a0-jf-b0-50.ucode
 iwlwifi-so-a0-jf-b0-59.ucode
