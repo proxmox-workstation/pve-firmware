@@ -537,13 +537,17 @@ sub add_fw :prototype($$) {
 
     my $module = basename($mod);
     my $name = basename($fw);
+    my $fw_dir = dirname($fw);
 
     if ($name =~ /\*/) {
-	my $sr = `find '$target' \\( -type f -o -type l \\) -name '$name'`;
+	die "cannot handle GLOBs in path stem ('$fw_dir'), switch find below to regex and transform GLOB to regex"
+	    if $fw_dir =~ /\*/;
+
+	my $sr = `find '$target/$fw_dir' \\( -type f -o -type l \\) -name '$name'`;
 	chomp $sr;
 	if ($sr) {
 	    for my $f (split("\n", $sr)) {
-		print "found $f for GLOB '$name'\n";
+		print "found $f for GLOB '$fw'\n";
 		my $f_name = basename($f);
 		$fwbase_name->{$f_name} = 1;
 	    }
