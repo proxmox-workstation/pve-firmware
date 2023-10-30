@@ -655,4 +655,7 @@ for my $f (@$all_fw_files) {
 
 print "cleanup end result: keep: $keep, delete: $delete\n";
 
+# just some random boundary to catch some stupid '*' GLOB errors, adapt as needed.
+die "delete number is awfully low ($delete < 100)\n" if $delete < 100;
+
 exit(0);
