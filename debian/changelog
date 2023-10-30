@@ -1,3 +1,10 @@
+pve-firmware (3.8-5) bookworm; urgency=medium
+
+  * search for GLOBs only relative to their base directory, to avoid a overly
+    general one to include false-positives.
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 30 Oct 2023 07:18:41 +0100
+
 pve-firmware (3.8-4) bookworm; urgency=medium
 
   * add firmware list for our first 6.5 kernel
