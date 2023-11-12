@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Proxmox Support Team <support@proxmox.com>
 Homepage: http://www.proxmox.com
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 12), rdfind
 Standards-Version: 4.6.1
 
 Package: pve-firmware
