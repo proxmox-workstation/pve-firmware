@@ -1,3 +1,11 @@
+pve-firmware (3.9-2) bookworm; urgency=medium
+
+  * update linux-firmware to current 20240115 tag
+
+  * add firmware list from the 6.5.13-1 Proxmox kernel
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 14 Feb 2024 12:04:37 +0100
+
 pve-firmware (3.9-1) bookworm; urgency=medium
 
   * update linux-firmware to current 20231111 tag
