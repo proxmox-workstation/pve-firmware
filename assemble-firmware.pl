@@ -27,6 +27,9 @@ foreach my $fw (qw(
 BT3CPCC.bin
 FW10
 FW13
+RTL8192E/boot.img
+RTL8192E/data.img
+RTL8192E/main.img
 RTL8192U/boot.img
 RTL8192U/data.img
 RTL8192U/main.img
