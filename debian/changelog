@@ -1,3 +1,14 @@
+pve-firmware (3.10-1) bookworm; urgency=medium
+
+  * update linux-firmware to 20240220 tag
+
+  * assemble: add ancient RTL8192E files to ignore list as they got removed
+    from upstream.
+
+  * add fwlist for 6.8.1-1 kernel and update ignored file list
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 03 Apr 2024 09:42:27 +0200
+
 pve-firmware (3.9-2) bookworm; urgency=medium
 
   * update linux-firmware to current 20240115 tag
