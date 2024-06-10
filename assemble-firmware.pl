@@ -379,6 +379,10 @@ iwlwifi-sc-a0-hr-b0-83.ucode
 iwlwifi-sc-a0-hr-b0-86.ucode
 iwlwifi-sc-a0-wh-a0-83.ucode
 iwlwifi-sc-a0-wh-a0-86.ucode
+iwlwifi-sc2-a0-fm-c0-86.ucode
+iwlwifi-sc2-a0-wh-a0-86.ucode
+iwlwifi-sc2f-a0-fm-c0-86.ucode
+iwlwifi-sc2f-a0-wh-a0-86.ucode
 iwlwifi-so-a0-gf-a0-48.ucode
 iwlwifi-so-a0-gf-a0-50.ucode
 iwlwifi-so-a0-gf-a0-59.ucode
