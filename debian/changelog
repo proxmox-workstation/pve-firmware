@@ -1,3 +1,9 @@
+pve-firmware (3.13-3) bookworm; urgency=medium
+
+  * update linux-firmware to 20241017 tag
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Oct 2024 15:39:40 +0200
+
 pve-firmware (3.13-2) bookworm; urgency=medium
 
   * update linux-firmware to current master based on the 20240811 tag with
