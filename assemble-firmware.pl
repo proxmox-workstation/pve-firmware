@@ -414,10 +414,6 @@ liquidio/lio_23xx.bin
 liquidio/lio_410nv.bin
 me2600_firmware.bin
 me4000_firmware.bin
-mediatek/mt7996/mt7992_dsp.bin
-mediatek/mt7996/mt7992_rom_patch.bin
-mediatek/mt7996/mt7992_wa.bin
-mediatek/mt7996/mt7992_wm.bin
 metronome.wbf
 mrvl/pcie8766_uapsta.bin
 mrvl/pcie8897_uapsta_a0.bin
@@ -459,13 +455,10 @@ regulatory.db
 regulatory.db.p7s
 renesas_usb_fw.mem
 rtl_bt/rtl8723b_config.bin
-rtl_bt/rtl8723bs_config.bin
 rtl_bt/rtl8723cs_cg_config.bin
 rtl_bt/rtl8723cs_cg_fw.bin
 rtl_bt/rtl8723cs_vf_config.bin
 rtl_bt/rtl8723cs_vf_fw.bin
-rtl_bt/rtl8723cs_xx_config.bin
-rtl_bt/rtl8723cs_xx_fw.bin
 rtl_bt/rtl8723ds_config.bin
 rtl_bt/rtl8723ds_fw.bin
 rtl_bt/rtl8761a_config.bin
