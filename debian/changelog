@@ -1,3 +1,11 @@
+pve-firmware (3.14-2) bookworm; urgency=medium
+
+  * update linux-firmware to current master based on the 20241110 tag
+
+  * update firmware list of the 6.11 based kernel
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 04 Dec 2024 14:35:29 +0100
+
 pve-firmware (3.14-1) bookworm; urgency=medium
 
   * track firmware list for 6.11.0-1-pve kernel
