@@ -1,0 +1,123 @@
+name: Build Debian Package
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      full_version: ${{ steps.build-kernel-package.outputs.full_version }}
+    container: 
+      image: debian:bookworm
+      volumes:
+        - /usr:/usr-host
+        - /opt:/opt-host
+      options: --privileged
+    steps:
+      - name: Maximize build space
+        run: |
+          df -h
+          rm -rf /usr-host/share/dotnet
+          rm -rf /usr-host/share/swift
+          rm -rf /usr-host/share/java
+          rm -rf /usr-host/local/lib/android
+          rm -rf /opt-host/ghc
+          rm -rf /opt-host/hostedtoolcache
+          rm -rf /opt-host/az
+          df -h
+      - name: Install basic dependencies
+        id: install-deps
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get install -y wget git lsb-release wget software-properties-common gnupg
+      - name: Install more dependencies
+        id: install-more
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get install -y build-essential devscripts debhelper dh-python asciidoc-base bc bison cpio dwarves flex kmod libdw-dev libiberty-dev libnuma-dev  libslang2-dev lz4 rsync xmlto
+          apt-get install -y libunwind-dev libpfm4-dev coccinelle openjdk-17-jdk libcapstone-dev libbabeltrace-dev systemtap-sdt-dev libzstd-dev dwarves zstd libbfd-dev libperl-dev
+      - name: Install clang
+        id: install-clang
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          ./llvm.sh
+          apt-get install -y clang-18 lldb-18 lld-18 clangd-18
+          ln -s /usr/bin/clang++-18 /usr/bin/clang++
+          ln -s /usr/bin/clang-18 /usr/bin/clang
+          ln -s /usr/bin/llvm-18 /usr/bin/llvm
+          ln -s /usr/bin/lld-18 /usr/bin/lld
+          ln -s /usr/bin/llvm-nm-18 /usr/bin/llvm-nm
+          ln -s /usr/bin/llvm-objcopy-18 /usr/bin/llvm-objcopy
+          ln -s /usr/bin/llvm-objdump-18 /usr/bin/llvm-objdump
+          ln -s /usr/bin/llvm-readelf-18 /usr/bin/llvm-readelf
+          ln -s /usr/bin/llvm-ar-18 /usr/bin/llvm-ar
+          ln -s /usr/bin/llvm-strip-18 /usr/bin/llvm-strip
+          ln -s /usr/bin/ld.lld-18 /usr/bin/ld.lld
+          ln -s /usr/lib/llvm-18 /usr/lib/llvm
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download submodules
+        id: download-submodules
+        run: |
+          git config --global safe.directory '*'
+          git submodule update --init --recursive
+      - name: Download pahole
+        id: pahole
+        run: |
+          apt-get install -y cmake python3 python3-matplotlib zlib1g-dev libelf-dev
+          git clone https://github.com/acmel/dwarves.git --recursive --branch v1.29 --single-branch
+          cmake -S dwarves -B dwarves_build -G "Unix Makefiles" -D __LIB=lib -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=OFF
+      - name: Build the firmware
+        id: build-kernel-package
+        run: |
+          echo 'deb [arch=amd64] http://download.proxmox.com/debian/pve bookworm pve-no-subscription' > /etc/apt/sources.list.d/pve-install-repo.list
+          echo 'deb http://security.debian.org/debian-security bookworm-security main contrib' >> /etc/apt/sources.list.d/pve-install-repo.list
+          wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get install -y libpve-common-perl
+          export LLVM=1 LLVM_IAS=1
+          cmake --build dwarves_build
+          cmake --install dwarves_build
+          rm -rf dwarves_build
+          LLVM=1 LLVM_IAS=1 make -j$(nproc) deb
+          echo "full_version=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-package
+          path: |
+            *.deb
+          if-no-files-found: error
+  
+  make-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: [build]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: firmware-package
+          path: .
+
+      - name: Make release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: pve-firmware-${{ github.ref_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_commitish: ${{ github.sha }}
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: |
+            *.deb
