@@ -1,6 +1,6 @@
 [submodule "linux-firmware.git"]
 	path = linux-firmware.git
-	url = https://web.git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
+	url = https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 [submodule "dvb-firmware.git"]
 	path = dvb-firmware.git
 	url = https://github.com/LibreELEC/dvb-firmware.git
