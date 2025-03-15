@@ -48,19 +48,19 @@ jobs:
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           ./llvm.sh
-          apt-get install -y clang-18 lldb-18 lld-18 clangd-18
-          ln -s /usr/bin/clang++-18 /usr/bin/clang++
-          ln -s /usr/bin/clang-18 /usr/bin/clang
-          ln -s /usr/bin/llvm-18 /usr/bin/llvm
-          ln -s /usr/bin/lld-18 /usr/bin/lld
-          ln -s /usr/bin/llvm-nm-18 /usr/bin/llvm-nm
-          ln -s /usr/bin/llvm-objcopy-18 /usr/bin/llvm-objcopy
-          ln -s /usr/bin/llvm-objdump-18 /usr/bin/llvm-objdump
-          ln -s /usr/bin/llvm-readelf-18 /usr/bin/llvm-readelf
-          ln -s /usr/bin/llvm-ar-18 /usr/bin/llvm-ar
-          ln -s /usr/bin/llvm-strip-18 /usr/bin/llvm-strip
-          ln -s /usr/bin/ld.lld-18 /usr/bin/ld.lld
-          ln -s /usr/lib/llvm-18 /usr/lib/llvm
+          apt-get install -y clang-19 lldb-19 lld-19 clangd-19
+          ln -s /usr/bin/clang++-19 /usr/bin/clang++
+          ln -s /usr/bin/clang-19 /usr/bin/clang
+          ln -s /usr/bin/llvm-19 /usr/bin/llvm
+          ln -s /usr/bin/lld-19 /usr/bin/lld
+          ln -s /usr/bin/llvm-nm-19 /usr/bin/llvm-nm
+          ln -s /usr/bin/llvm-objcopy-19 /usr/bin/llvm-objcopy
+          ln -s /usr/bin/llvm-objdump-19 /usr/bin/llvm-objdump
+          ln -s /usr/bin/llvm-readelf-19 /usr/bin/llvm-readelf
+          ln -s /usr/bin/llvm-ar-19 /usr/bin/llvm-ar
+          ln -s /usr/bin/llvm-strip-19 /usr/bin/llvm-strip
+          ln -s /usr/bin/ld.lld-19 /usr/bin/ld.lld
+          ln -s /usr/lib/llvm-19 /usr/lib/llvm
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Download submodules
