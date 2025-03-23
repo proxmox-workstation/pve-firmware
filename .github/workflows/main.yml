@@ -58,6 +58,12 @@ jobs:
           git submodule update --init --recursive
       - id: commit
         uses: prompt/actions-commit-hash@v3
+      - id: push-tag
+        run: |
+          git config --global user.name "Github CI"
+          git config --global user.email "github@github.com"
+          git tag ${{ steps.commit.outputs.short }}
+          git push origin ${{ steps.commit.outputs.short }}
       - name: Download pahole
         id: pahole
         run: |
