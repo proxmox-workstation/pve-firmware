@@ -47,20 +47,8 @@ jobs:
           export DEBIAN_FRONTEND=noninteractive
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
-          ./llvm.sh
-          apt-get install -y clang-19 lldb-19 lld-19 clangd-19
-          ln -s /usr/bin/clang++-19 /usr/bin/clang++
-          ln -s /usr/bin/clang-19 /usr/bin/clang
-          ln -s /usr/bin/llvm-19 /usr/bin/llvm
-          ln -s /usr/bin/lld-19 /usr/bin/lld
-          ln -s /usr/bin/llvm-nm-19 /usr/bin/llvm-nm
-          ln -s /usr/bin/llvm-objcopy-19 /usr/bin/llvm-objcopy
-          ln -s /usr/bin/llvm-objdump-19 /usr/bin/llvm-objdump
-          ln -s /usr/bin/llvm-readelf-19 /usr/bin/llvm-readelf
-          ln -s /usr/bin/llvm-ar-19 /usr/bin/llvm-ar
-          ln -s /usr/bin/llvm-strip-19 /usr/bin/llvm-strip
-          ln -s /usr/bin/ld.lld-19 /usr/bin/ld.lld
-          ln -s /usr/lib/llvm-19 /usr/lib/llvm
+          ./llvm.sh 18
+          apt-get install -y clang-18 lldb-18 lld-18 clangd-18
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Download submodules
@@ -68,6 +56,8 @@ jobs:
         run: |
           git config --global safe.directory '*'
           git submodule update --init --recursive
+      - id: commit
+        uses: prompt/actions-commit-hash@v3
       - name: Download pahole
         id: pahole
         run: |
@@ -84,11 +74,12 @@ jobs:
           apt-get update
           apt-get install -y libpve-common-perl
           yes | mk-build-deps -ir debian/control
-          export LLVM=1 LLVM_IAS=1
+          export LLVM=-18 LLVM_IAS=1
+          export CC="/usr/bin/clang-18"
           cmake --build dwarves_build
           cmake --install dwarves_build
           rm -rf dwarves_build
-          LLVM=1 LLVM_IAS=1 make -j$(nproc) deb
+          LLVM=-18 LLVM_IAS=1 make -j$(nproc) deb
           echo "full_version=${{ github.sha }}" >> "$GITHUB_OUTPUT"
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
@@ -113,10 +104,10 @@ jobs:
       - name: Make release
         uses: softprops/action-gh-release@v2
         with:
-          name: pve-firmware-${{ github.ref_name }}
+          name: pve-firmware-${{ steps.commit.outputs.short }}
           token: ${{ secrets.GITHUB_TOKEN }}
           target_commitish: ${{ github.sha }}
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ steps.commit.outputs.short }}
           draft: false
           prerelease: true
           fail_on_unmatched_files: true
