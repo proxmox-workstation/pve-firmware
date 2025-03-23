@@ -40,6 +40,7 @@ fw.list: fwlist-6.8.1-1-pve
 fw.list: fwlist-6.8.8-1-pve
 fw.list: fwlist-6.8.12-7-pve
 fw.list: fwlist-6.11.0-1-pve
+fw.list: fwlist-6.12.19-1-pws
 	rm -f $@.tmp $@
 	sort -u $^ > $@.tmp
 	mv $@.tmp $@
@@ -51,7 +52,7 @@ $(BUILDDIR): linux-firmware.git/WHENCE dvb-firmware.git/README fw.list
 	rm -rf $@ $@.tmp
 	mkdir -p $@.tmp/lib/firmware
 	cp -a debian $@.tmp
-	echo "git clone git://git.proxmox.com/git/pve-firmware.git\\ngit checkout $$(git rev-parse HEAD)" >$@.tmp/debian/SOURCE
+	echo "git clone git://github.com/proxmox-workstation/NeroReflex/pve-firmware.git\\ngit checkout $$(git rev-parse HEAD)" >$@.tmp/debian/SOURCE
 	cd linux-firmware.git; ./copy-firmware.sh -v ../$@.tmp/lib/firmware/
 	./assemble-firmware.pl fw.list $@.tmp/lib/firmware
 	find $@.tmp/lib/firmware -empty -type d -delete
