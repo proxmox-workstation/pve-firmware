@@ -106,7 +106,12 @@ jobs:
         with:
           name: firmware-package
           path: .
-
+      - name: 🛎️ Create release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: pve-firmware-${{ steps.commit.outputs.short }}
+          draft: true
       - name: Make release
         uses: softprops/action-gh-release@v2
         with:
