@@ -111,6 +111,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.commit.outputs.short }}
+          commit: ${{ github.sha }}
           draft: true
       - name: Make release
         uses: softprops/action-gh-release@v2
@@ -119,7 +120,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_commitish: ${{ github.sha }}
           tag_name: ${{ steps.commit.outputs.short }}
-          draft: false
+          draft: true
           prerelease: true
           fail_on_unmatched_files: true
           files: |
