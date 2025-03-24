@@ -1,3 +1,11 @@
+pve-firmware (3.15-1) bookworm; urgency=high
+
+  * update linux-firmware to current master
+
+  * update firmware list of the 6.12.20 based kernel
+
+ -- Denis Benato <benato.denis96@gmail.com>  Fri, 17 Jan 2025 15:10:47 +0100
+
 pve-firmware (3.14-3) bookworm; urgency=medium
 
   * update linux-firmware to current master based on the 20250109 tag
