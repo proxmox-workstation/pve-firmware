@@ -10,8 +10,8 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     outputs:
-      full_version: ${{ steps.build-kernel-package.outputs.full_version }}
-      tag: ${{ steps.build-kernel-package.outputs.tag }}
+      full_version: ${{ steps.tag.outputs.full_version }}
+      tag: ${{ steps.tag.outputs.tag }}
     container: 
       image: debian:bookworm
       volumes:
@@ -59,6 +59,10 @@ jobs:
           git submodule update --init --recursive
       - id: commit
         uses: prompt/actions-commit-hash@v3
+      - id: tag
+        run: |
+          echo "full_version=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          echo "tag=${{ steps.commit.outputs.short }}" >> "$GITHUB_OUTPUT"
       - name: Download pahole
         id: pahole
         run: |
@@ -81,8 +85,6 @@ jobs:
           cmake --install dwarves_build
           rm -rf dwarves_build
           LLVM=-18 LLVM_IAS=1 make -j$(nproc) deb
-          echo "full_version=${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          echo "tag=${{ steps.commit.outputs.short }}" >> "$GITHUB_OUTPUT"
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
@@ -145,19 +147,10 @@ jobs:
       - name: 🛎️ Create release
         uses: ncipollo/release-action@v1
         with:
+          name: linux-firmware-${{ needs.tag_version.outputs.tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ needs.tag_version.outputs.tag }}
           commit: ${{ github.sha }}
           draft: true
-      - name: Make release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: pve-firmware-${{ needs.tag_version.outputs.tag }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          target_commitish: ${{ github.sha }}
-          tag_name: ${{ needs.tag_version.outputs.tag }}
-          draft: true
-          prerelease: true
-          fail_on_unmatched_files: true
-          files: |
+          artifacts: |
             *.deb
