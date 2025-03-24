@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
     outputs:
       full_version: ${{ steps.build-kernel-package.outputs.full_version }}
@@ -58,12 +58,6 @@ jobs:
           git submodule update --init --recursive
       - id: commit
         uses: prompt/actions-commit-hash@v3
-      - id: push-tag
-        run: |
-          git config --global user.name "Github CI"
-          git config --global user.email "github@github.com"
-          git tag ${{ steps.commit.outputs.short }}
-          git push origin ${{ steps.commit.outputs.short }}
       - name: Download pahole
         id: pahole
         run: |
@@ -95,11 +89,45 @@ jobs:
             *.deb
           if-no-files-found: error
   
+  tag_version:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    outputs:
+      tagged: ${{ steps.check_tagged.outputs.tagged }}
+      tag: ${{ steps.tag.outputs.new_tag }}
+    steps:
+      - name: 🔃 Checkout dist branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.build_and_push.outputs.branch }}
+          fetch-depth: 0
+
+      - name: ⚙️ Check tag exists
+        id: check_tag
+        uses: mukunku/tag-exists-action@v1.0.0
+        with:
+          tag: ${{ needs.build_and_push.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔖 Tag version
+        id: tag
+        if: ${{ steps.check_tag.outputs.exists == 'false' }}
+        uses: anothrNick/github-tag-action@1.34.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_TAG: ${{ needs.build_and_push.outputs.tag }}
+
+      - name: ⚙️ Check created tag
+        id: check_tagged
+        run: |
+          echo "::set-output name=tagged::${{ (steps.check_tag.outputs.exists == 'false') && (steps.tag.outputs.new_tag == steps.tag.outputs.tag) }}"
+
   make-release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    needs: [build]
+    needs: tag_version
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -110,7 +138,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.commit.outputs.short }}
+          tag: ${{ needs.tag_version.outputs.tag }}
           commit: ${{ github.sha }}
           draft: true
       - name: Make release
