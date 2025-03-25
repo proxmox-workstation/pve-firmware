@@ -152,6 +152,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ needs.tag_version.outputs.tag }}
           commit: ${{ github.sha }}
-          draft: true
+          draft: false
           artifacts: |
             *.deb
